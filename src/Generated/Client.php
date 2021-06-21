@@ -33,6 +33,7 @@ class Client extends \Datenkraft\Backbone\Client\ControlServerApi\Generated\Runt
      * @param array $queryParameters {
      *     @var string $filter[clientId] Task clientId filter
      *     @var string $filter[taskType] Task taskType filter
+     *     @var string $filter[notBefore] Task notBefore filter
      *     @var array $filter[taskStatus] Task taskStatus filter
      * }
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -48,24 +49,24 @@ class Client extends \Datenkraft\Backbone\Client\ControlServerApi\Generated\Runt
         return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\GetTaskCollection($queryParameters), $fetch);
     }
     /**
-     * Update a Customer
+     * Update one or more fields of a Task
      *
      * @param string $taskId Task Id
      * @param \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\UpdateTask $requestBody 
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PutCustomerUnauthorizedException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PutCustomerForbiddenException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PutCustomerUnprocessableEntityException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PutCustomerNotFoundException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PutCustomerBadRequestException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PutCustomerInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskForbiddenException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskUnprocessableEntityException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskNotFoundException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskBadRequestException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
      *
      * @return null|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\Task|\Psr\Http\Message\ResponseInterface
      */
-    public function putCustomer(string $taskId, \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\UpdateTask $requestBody, string $fetch = self::FETCH_OBJECT)
+    public function patchTask(string $taskId, \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\UpdateTask $requestBody, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\PutCustomer($taskId, $requestBody), $fetch);
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\PatchTask($taskId, $requestBody), $fetch);
     }
     public static function create($httpClient = null, array $additionalPlugins = array())
     {

@@ -34,6 +34,13 @@ abstract class ControlServerConsumerTest extends TestCase
 
     protected $matcher;
 
+    protected $clientId;
+    protected $taskType;
+    protected $taskStatus1;
+    protected $taskStatus2;
+    protected $notBefore;
+
+    protected $queryParams;
 
     /**
      * @throws Exception
@@ -61,6 +68,11 @@ abstract class ControlServerConsumerTest extends TestCase
                 ]
             ]
         ];
+
+        $this->clientId = 'clientId_test';
+        $this->taskType = 'taskType_test';
+        $this->taskStatus1 = 'taskStatus_test_1';
+        $this->taskStatus2 = 'taskStatus_test_2';
     }
 
     protected function tearDown(): void

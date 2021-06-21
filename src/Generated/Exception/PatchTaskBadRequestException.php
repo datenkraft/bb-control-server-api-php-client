@@ -2,12 +2,12 @@
 
 namespace Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception;
 
-class PutCustomerInternalServerErrorException extends InternalServerErrorException
+class PatchTaskBadRequestException extends BadRequestException
 {
     private $errorResponse;
     public function __construct(\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse $errorResponse)
     {
-        parent::__construct('Server error', 500);
+        parent::__construct('Bad Request', 400);
         $this->errorResponse = $errorResponse;
     }
     public function getErrorResponse()

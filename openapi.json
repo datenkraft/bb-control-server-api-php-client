@@ -91,6 +91,15 @@
                         }
                     },
                     {
+                        "name": "filter[notBefore]",
+                        "in": "query",
+                        "description": "Task notBefore filter",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
                         "name": "filter[taskStatus]",
                         "in": "query",
                         "description": "Task taskStatus filter",
@@ -166,14 +175,14 @@
                 ]
             }
         },
-        "/customer/{customerId}": {
-            "put": {
+        "/task/{taskId}": {
+            "patch": {
                 "tags": [
-                    "customer"
+                    "task"
                 ],
-                "summary": "Update a Customer",
-                "description": "Update a Customer",
-                "operationId": "putCustomer",
+                "summary": "Update a Task",
+                "description": "Update one or more fields of a Task",
+                "operationId": "patchTask",
                 "parameters": [
                     {
                         "name": "taskId",
