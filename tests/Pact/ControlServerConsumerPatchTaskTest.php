@@ -120,9 +120,6 @@ class ControlServerConsumerPatchTaskTest extends ControlServerConsumerTest
 		// Error code in response is 422
 		$this->expectedStatusCode = '422';
 		$this->errorResponse['errors'][0]['code'] = strval($this->expectedStatusCode);
-		$this->errorResponse['errors'][0]['extra'] = [
-			'externalId' => $this->requestData[0]['externalId']
-		];
 
 		$this->builder
 			->given('The taskStatus does not exist')
