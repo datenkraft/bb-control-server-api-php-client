@@ -125,7 +125,7 @@ class ControlServerConsumerPatchTaskTest extends ControlServerConsumerTest
 		];
 
 		$this->builder
-			->given('The SKU with skuId does not exist')
+			->given('The taskStatus does not exist')
 			->uponReceiving('POST request to /task/{taskId} with non-existent taskStatus');
 
 		$this->responseData = $this->errorResponse;
