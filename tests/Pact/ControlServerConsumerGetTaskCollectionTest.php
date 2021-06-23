@@ -6,6 +6,7 @@ use Datenkraft\Backbone\Client\ControlServerApi\Client;
 use Datenkraft\Backbone\Client\BaseApi\ClientFactory;
 use Datenkraft\Backbone\Client\BaseApi\Exceptions\AuthException;
 use Datenkraft\Backbone\Client\BaseApi\Exceptions\ConfigException;
+use DateTime;
 use DateTimeInterface;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
@@ -34,7 +35,7 @@ class ControlServerConsumerGetTaskCollectionTest extends ControlServerConsumerTe
             'Content-Type' => 'application/json',
         ];
 
-        $this->notBefore = date(DateTimeInterface::ATOM, 0);
+        $this->notBefore = $this->matcher->like((new DateTime())->format(DateTimeInterface::ATOM))['contents'];
 
         $this->requestData = [];
         $this->responseData = [

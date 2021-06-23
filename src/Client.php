@@ -6,6 +6,7 @@ namespace Datenkraft\Backbone\Client\ControlServerApi;
 
 use Datenkraft\Backbone\Client\BaseApi\ClientFactory;
 use Datenkraft\Backbone\Client\BaseApi\Exceptions\AuthException;
+use Datenkraft\Backbone\Client\ControlServerApi\Endpoint\GetTaskCollection;
 
 /**
  * Class Client
@@ -25,4 +26,11 @@ class Client extends Generated\Client
 
         return $clientFactory->createClient(static::class, $endpointUrl);
     }
+
+	/**
+	 * @inheritDoc
+	 */
+    public function getTaskCollection(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT) {
+		return $this->executeEndpoint(new GetTaskCollection($queryParameters), $fetch);
+	}
 }

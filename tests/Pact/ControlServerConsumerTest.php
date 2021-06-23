@@ -129,6 +129,14 @@ abstract class ControlServerConsumerTest extends TestCase
         foreach ($requestHeaders as $header => $value) {
             $request->addHeader($header, $value);
         }
+		if (is_array($this->queryParams)) {
+			foreach ($this->queryParams as $queryParam => $value) {
+				if (is_array($value)) {
+					$value = implode(',', $value);
+				}
+				$request->addQueryParameter($queryParam, $value);
+			}
+		}
         if (!empty($requestBody)) {
             $request->setBody($requestBody);
         }

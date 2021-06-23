@@ -112,11 +112,25 @@ class ControlServerConsumerPatchTaskTest extends ControlServerConsumerTest
         $this->beginTest();
     }
 
-//    public function testPatchTaskUnprocessableEntity()
-//    {
-//        // will not happen because for now we just support updating the taskStatus field
-//    }
+    public function testPatchTaskUnprocessableEntity()
+    {
+		// TaskStatus does not exist
+		$this->requestData['taskStatus'] = 'taskStatus_invalid';
 
+		// Error code in response is 422
+		$this->expectedStatusCode = '422';
+		$this->errorResponse['errors'][0]['code'] = strval($this->expectedStatusCode);
+		$this->errorResponse['errors'][0]['extra'] = [
+			'externalId' => $this->requestData[0]['externalId']
+		];
+
+		$this->builder
+			->given('The SKU with skuId does not exist')
+			->uponReceiving('POST request to /task/{taskId} with non-existent taskStatus');
+
+		$this->responseData = $this->errorResponse;
+		$this->beginTest();
+	}
 
     public function testPatchTaskNotFound(): void
     {
