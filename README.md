@@ -35,12 +35,31 @@ The Client also is auto generated with jane-php using an openapi.json file.
 ~~~~ php
 require 'path/to/vendor/autoload.php';
 
-// TODO
+// Valid clientId, clientSecret and requested scopes
+$clientId = '1234';
+$clientSecret = 'abcd';
+$oAuthScopes = ['sku-usage:post'];
+
+$config['clientId'] = $clientId;
+$config['clientSecret'] = $clientSecret;
+$config['oAuthScopes'] = $oAuthScopes;
+
+$factory = new ClientFactory($config);
+$client = Client::createWithFactory($factory);
 ~~~~
 
-### Example Endpoint: Get Task
+### Example Endpoint: Get Task Collection
 ~~~~ php
-// TODO
+$queryParams = [
+    'filter[clientId]' => 'clientId',
+    'filter[taskType]' => 'taskType',
+    'filter[notBefore]' => (new DateTime())->format(DateTimeInterface::ATOM),
+    'filter[taskStatus]' => ['taskStatus1', 'taskStatus2'],
+];
+
+$response = $client->getTaskCollection($queryParams);
+$response; // tasks[]
+
 ~~~~
 
 ## Licence

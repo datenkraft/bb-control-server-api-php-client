@@ -35,7 +35,7 @@ class ControlServerConsumerGetTaskCollectionTest extends ControlServerConsumerTe
             'Content-Type' => 'application/json',
         ];
 
-        $this->notBefore = $this->matcher->like((new DateTime())->format(DateTimeInterface::ATOM))['contents'];
+        $this->notBefore = $this->matcher->like((new DateTime('2021-06-01'))->format(DateTimeInterface::ATOM))['contents'];
 
         $this->requestData = [];
         $this->responseData = [
