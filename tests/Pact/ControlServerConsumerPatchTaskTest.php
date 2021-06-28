@@ -7,7 +7,6 @@ use Datenkraft\Backbone\Client\BaseApi\Exceptions\AuthException;
 use Datenkraft\Backbone\Client\BaseApi\Exceptions\ConfigException;
 use Datenkraft\Backbone\Client\ControlServerApi\Client;
 use Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\UpdateTask;
-use DateTimeInterface;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
 
@@ -44,8 +43,6 @@ class ControlServerConsumerPatchTaskTest extends ControlServerConsumerTest
         $this->taskIdInvalid = 'taskId_test_invalid';
 
         $this->taskId = $this->taskIdValid;
-
-        $this->notBefore = date(DateTimeInterface::ATOM, 0);
 
         $this->requestData = [
             'taskStatus' => $this->taskStatus2

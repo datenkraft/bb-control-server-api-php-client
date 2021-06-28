@@ -2,6 +2,8 @@
 
 namespace Pact;
 
+use DateTime;
+use DateTimeInterface;
 use Exception;
 use PhpPact\Consumer\InteractionBuilder;
 use PhpPact\Consumer\Matcher\Matcher;
@@ -73,6 +75,7 @@ abstract class ControlServerConsumerTest extends TestCase
         $this->taskType = 'taskType_test';
         $this->taskStatus1 = 'taskStatus_test_1';
         $this->taskStatus2 = 'taskStatus_test_2';
+        $this->notBefore = (new DateTime('2021-06-01 11:11'))->format(DateTimeInterface::ATOM);
     }
 
     protected function tearDown(): void
