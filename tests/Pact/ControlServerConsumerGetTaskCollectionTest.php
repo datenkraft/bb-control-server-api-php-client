@@ -132,5 +132,3 @@ class ControlServerConsumerGetTaskCollectionTest extends ControlServerConsumerTe
         return $client->getTaskCollection($this->queryParams, Client::FETCH_RESPONSE);
     }
 }
-
-/* TODO: more tests with different filters */
