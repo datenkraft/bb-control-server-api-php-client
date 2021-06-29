@@ -120,7 +120,7 @@ class ControlServerConsumerPatchTaskTest extends ControlServerConsumerTest
 
 		$this->builder
 			->given('The taskStatus does not exist')
-			->uponReceiving('POST request to /task/{taskId} with non-existent taskStatus');
+			->uponReceiving('Unprocessable Entity PATCH request to /task/{taskId} with non-existent taskStatus');
 
 		$this->responseData = $this->errorResponse;
 		$this->beginTest();
