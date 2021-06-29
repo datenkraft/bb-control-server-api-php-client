@@ -50,9 +50,9 @@ class ControlServerConsumerPatchTaskTest extends ControlServerConsumerTest
         $this->responseData = [
             'taskId' => $this->taskId,
             'clientId' => $this->clientId,
-            'taskType' => $this->taskType,
+            'taskType' => $this->taskType_patch,
             'taskStatus' => $this->taskStatus2,
-            'params' => 'paramsTest',
+            'params' => $this->params,
             'notBefore' => $this->notBefore,
         ];
 

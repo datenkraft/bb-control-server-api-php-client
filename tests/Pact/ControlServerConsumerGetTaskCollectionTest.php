@@ -33,31 +33,29 @@ class ControlServerConsumerGetTaskCollectionTest extends ControlServerConsumerTe
             'Content-Type' => 'application/json',
         ];
 
-        $paramsTest = json_encode(['paramsTest' => 'test']);
-
         $this->requestData = [];
         $this->responseData = [
             [
                 'taskId' => 'taskId_test_get_1',
                 'clientId' => $this->clientId,
-                'taskType' => $this->taskType,
+                'taskType' => $this->taskType_get,
                 'taskStatus' => $this->taskStatus1,
-                'params' => $paramsTest,
+                'params' => $this->params,
                 'notBefore' => $this->notBefore,
             ],
             [
                 'taskId' => 'taskId_test_get_2',
                 'clientId' => $this->clientId,
-                'taskType' => $this->taskType,
+                'taskType' => $this->taskType_get,
                 'taskStatus' => $this->taskStatus2,
-                'params' => $paramsTest,
+                'params' => $this->params,
                 'notBefore' => $this->notBefore,
             ],
         ];
 
         $this->queryParams = [
             'filter[clientId]' => $this->clientId,
-            'filter[taskType]' => $this->taskType,
+            'filter[taskType]' => $this->taskType_get,
             'filter[notBefore]' => $this->notBefore,
             'filter[taskStatus]' => [$this->taskStatus1, $this->taskStatus2],
         ];
