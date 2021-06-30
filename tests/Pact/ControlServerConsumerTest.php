@@ -37,9 +37,11 @@ abstract class ControlServerConsumerTest extends TestCase
     protected $matcher;
 
     protected $clientId;
-    protected $taskType;
+    protected $taskType_get;
+    protected $taskType_patch;
     protected $taskStatus1;
     protected $taskStatus2;
+    protected $params;
     protected $notBefore;
 
     protected $queryParams;
@@ -72,10 +74,12 @@ abstract class ControlServerConsumerTest extends TestCase
         ];
 
         $this->clientId = 'clientId_test';
-        $this->taskType = 'taskType_test';
+        $this->taskType_get = 'taskType_test_get';
+        $this->taskType_patch = 'taskType_test_patch';
         $this->taskStatus1 = 'taskStatus_test_1';
         $this->taskStatus2 = 'taskStatus_test_2';
-        $this->notBefore = (new DateTime('2021-06-01 11:11'))->format(DateTimeInterface::ATOM);
+        $this->params = ['paramsTest' => 'test'];
+        $this->notBefore = (new DateTime('2021-06-01 11:11:11'))->format(DateTimeInterface::ATOM);
     }
 
     protected function tearDown(): void
