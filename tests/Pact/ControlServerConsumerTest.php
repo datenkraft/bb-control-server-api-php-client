@@ -36,7 +36,7 @@ abstract class ControlServerConsumerTest extends TestCase
 
     protected $matcher;
 
-    protected $clientId;
+    protected $projectId;
     protected $taskType_get;
     protected $taskType_patch;
     protected $taskStatus1;
@@ -73,7 +73,7 @@ abstract class ControlServerConsumerTest extends TestCase
             ]
         ];
 
-        $this->clientId = 'clientId_test';
+        $this->projectId = 'projectId_test';
         $this->taskType_get = 'taskType_test_get';
         $this->taskType_patch = 'taskType_test_patch';
         $this->taskStatus1 = 'taskStatus_test_1';

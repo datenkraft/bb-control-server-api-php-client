@@ -31,7 +31,7 @@ class Client extends \Datenkraft\Backbone\Client\ControlServerApi\Generated\Runt
      * Get tasks
      *
      * @param array $queryParameters {
-     *     @var string $filter[clientId] Task clientId filter
+     *     @var string $filter[projectId] Task projectId filter
      *     @var string $filter[taskType] Task taskType filter
      *     @var string $filter[notBefore] Task notBefore filter
      *     @var array $filter[taskStatus] Task taskStatus filter

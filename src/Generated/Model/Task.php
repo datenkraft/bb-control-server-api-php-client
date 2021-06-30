@@ -11,11 +11,11 @@ class Task
      */
     protected $taskId;
     /**
-     * Client Id
+     * Project Id
      *
      * @var string
      */
-    protected $clientId;
+    protected $projectId;
     /**
      * Task Type
      *
@@ -62,24 +62,24 @@ class Task
         return $this;
     }
     /**
-     * Client Id
+     * Project Id
      *
      * @return string
      */
-    public function getClientId() : string
+    public function getProjectId() : string
     {
-        return $this->clientId;
+        return $this->projectId;
     }
     /**
-     * Client Id
+     * Project Id
      *
-     * @param string $clientId
+     * @param string $projectId
      *
      * @return self
      */
-    public function setClientId(string $clientId) : self
+    public function setProjectId(string $projectId) : self
     {
-        $this->clientId = $clientId;
+        $this->projectId = $projectId;
         return $this;
     }
     /**

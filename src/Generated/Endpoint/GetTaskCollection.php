@@ -8,7 +8,7 @@ class GetTaskCollection extends \Datenkraft\Backbone\Client\ControlServerApi\Gen
      * Get tasks
      *
      * @param array $queryParameters {
-     *     @var string $filter[clientId] Task clientId filter
+     *     @var string $filter[projectId] Task projectId filter
      *     @var string $filter[taskType] Task taskType filter
      *     @var string $filter[notBefore] Task notBefore filter
      *     @var array $filter[taskStatus] Task taskStatus filter
@@ -38,10 +38,10 @@ class GetTaskCollection extends \Datenkraft\Backbone\Client\ControlServerApi\Gen
     protected function getQueryOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(array('filter[clientId]', 'filter[taskType]', 'filter[notBefore]', 'filter[taskStatus]'));
+        $optionsResolver->setDefined(array('filter[projectId]', 'filter[taskType]', 'filter[notBefore]', 'filter[taskStatus]'));
         $optionsResolver->setRequired(array());
         $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('filter[clientId]', array('string'));
+        $optionsResolver->setAllowedTypes('filter[projectId]', array('string'));
         $optionsResolver->setAllowedTypes('filter[taskType]', array('string'));
         $optionsResolver->setAllowedTypes('filter[notBefore]', array('string'));
         $optionsResolver->setAllowedTypes('filter[taskStatus]', array('array'));
