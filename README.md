@@ -51,7 +51,7 @@ $client = Client::createWithFactory($factory);
 ### Example Endpoint: Get Task Collection
 ~~~~ php
 $queryParams = [
-    'filter[clientId]' => 'clientId',
+    'filter[projectId]' => 'projectId',
     'filter[taskType]' => 'taskType',
     'filter[notBefore]' => (new DateTime())->format(DateTimeInterface::ATOM),
     'filter[taskStatus]' => ['taskStatus1', 'taskStatus2'],

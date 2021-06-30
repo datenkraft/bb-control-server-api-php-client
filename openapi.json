@@ -75,9 +75,9 @@
                 "operationId": "getTaskCollection",
                 "parameters": [
                     {
-                        "name": "filter[clientId]",
+                        "name": "filter[projectId]",
                         "in": "query",
-                        "description": "Task clientId filter",
+                        "description": "Task projectId filter",
                         "schema": {
                             "type": "string"
                         }
@@ -320,7 +320,7 @@
             "task": {
                 "required": [
                     "taskId",
-                    "clientId",
+                    "projectId",
                     "taskType",
                     "taskStatus"
                 ],
@@ -329,8 +329,8 @@
                         "description": "Task Id",
                         "type": "string"
                     },
-                    "clientId": {
-                        "description": "Client Id",
+                    "projectId": {
+                        "description": "Project Id",
                         "type": "string"
                     },
                     "taskType": {
@@ -342,9 +342,9 @@
                         "type": "string"
                     },
                     "params": {
+                        "nullable": true,
                         "description": "Params",
-                        "type": "string",
-                        "nullable": true
+                        "type": "string"
                     },
                     "notBefore": {
                         "description": "NotBefore",

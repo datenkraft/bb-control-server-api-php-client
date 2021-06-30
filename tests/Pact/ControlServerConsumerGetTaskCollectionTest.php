@@ -37,7 +37,7 @@ class ControlServerConsumerGetTaskCollectionTest extends ControlServerConsumerTe
         $this->responseData = [
             [
                 'taskId' => 'taskId_test_get_1',
-                'clientId' => $this->clientId,
+                'projectId' => $this->projectId,
                 'taskType' => $this->taskType_get,
                 'taskStatus' => $this->taskStatus1,
                 'params' => $this->params,
@@ -45,7 +45,7 @@ class ControlServerConsumerGetTaskCollectionTest extends ControlServerConsumerTe
             ],
             [
                 'taskId' => 'taskId_test_get_2',
-                'clientId' => $this->clientId,
+                'projectId' => $this->projectId,
                 'taskType' => $this->taskType_get,
                 'taskStatus' => $this->taskStatus2,
                 'params' => $this->params,
@@ -54,7 +54,7 @@ class ControlServerConsumerGetTaskCollectionTest extends ControlServerConsumerTe
         ];
 
         $this->queryParams = [
-            'filter[clientId]' => $this->clientId,
+            'filter[projectId]' => $this->projectId,
             'filter[taskType]' => $this->taskType_get,
             'filter[notBefore]' => $this->notBefore,
             'filter[taskStatus]' => [$this->taskStatus1, $this->taskStatus2],
