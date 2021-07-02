@@ -344,7 +344,7 @@
                     "params": {
                         "nullable": true,
                         "description": "Params",
-                        "type": "string"
+                        "type": "object"
                     },
                     "notBefore": {
                         "description": "NotBefore",
