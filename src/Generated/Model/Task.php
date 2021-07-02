@@ -31,7 +31,7 @@ class Task
     /**
      * Params
      *
-     * @var string|null
+     * @var mixed|null
      */
     protected $params;
     /**
@@ -127,20 +127,20 @@ class Task
     /**
      * Params
      *
-     * @return string|null
+     * @return mixed
      */
-    public function getParams() : ?string
+    public function getParams()
     {
         return $this->params;
     }
     /**
      * Params
      *
-     * @param string|null $params
+     * @param mixed $params
      *
      * @return self
      */
-    public function setParams(?string $params) : self
+    public function setParams($params) : self
     {
         $this->params = $params;
         return $this;
