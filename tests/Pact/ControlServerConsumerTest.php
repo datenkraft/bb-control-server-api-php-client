@@ -73,7 +73,7 @@ abstract class ControlServerConsumerTest extends TestCase
             ]
         ];
 
-        $this->projectId = 'projectId_test';
+        $this->projectId = 'baaa4217-bbd6-4618-9639-1ef18a645564';
         $this->taskType_get = 'taskType_test_get';
         $this->taskType_patch = 'taskType_test_patch';
         $this->taskStatus1 = 'taskStatus_test_1';

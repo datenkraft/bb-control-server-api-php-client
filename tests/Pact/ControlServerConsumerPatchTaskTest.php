@@ -111,20 +111,20 @@ class ControlServerConsumerPatchTaskTest extends ControlServerConsumerTest
 
     public function testPatchTaskUnprocessableEntity()
     {
-		// TaskStatus does not exist
-		$this->requestData['taskStatus'] = 'taskStatus_invalid';
+        // TaskStatus does not exist
+        $this->requestData['taskStatus'] = 'taskStatus_invalid';
 
-		// Error code in response is 422
-		$this->expectedStatusCode = '422';
-		$this->errorResponse['errors'][0]['code'] = strval($this->expectedStatusCode);
+        // Error code in response is 422
+        $this->expectedStatusCode = '422';
+        $this->errorResponse['errors'][0]['code'] = strval($this->expectedStatusCode);
 
-		$this->builder
-			->given('The taskStatus does not exist')
-			->uponReceiving('Unprocessable Entity PATCH request to /task/{taskId} with non-existent taskStatus');
+        $this->builder
+            ->given('The taskStatus does not exist')
+            ->uponReceiving('Unprocessable Entity PATCH request to /task/{taskId} with non-existent taskStatus');
 
-		$this->responseData = $this->errorResponse;
-		$this->beginTest();
-	}
+        $this->responseData = $this->errorResponse;
+        $this->beginTest();
+    }
 
     public function testPatchTaskNotFound(): void
     {

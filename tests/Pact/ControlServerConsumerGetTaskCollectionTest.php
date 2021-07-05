@@ -27,7 +27,7 @@ class ControlServerConsumerGetTaskCollectionTest extends ControlServerConsumerTe
         $this->token = getenv('VALID_TOKEN_TASK_GET');
 
         $this->requestHeaders = [
-            'Authorization' => 'Bearer '.$this->token,
+            'Authorization' => 'Bearer ' . $this->token,
         ];
         $this->responseHeaders = [
             'Content-Type' => 'application/json',
@@ -80,7 +80,7 @@ class ControlServerConsumerGetTaskCollectionTest extends ControlServerConsumerTe
     {
         // Invalid token
         $this->token = 'invalid_token';
-        $this->requestHeaders['Authorization'] = 'Bearer '.$this->token;
+        $this->requestHeaders['Authorization'] = 'Bearer ' . $this->token;
 
         // Error code in response is 401
         $this->expectedStatusCode = '401';
@@ -98,7 +98,7 @@ class ControlServerConsumerGetTaskCollectionTest extends ControlServerConsumerTe
     {
         // Token with invalid scope
         $this->token = getenv('VALID_TOKEN_SKU_USAGE_POST');
-        $this->requestHeaders['Authorization'] = 'Bearer '.$this->token;
+        $this->requestHeaders['Authorization'] = 'Bearer ' . $this->token;
 
         // Error code in response is 403
         $this->expectedStatusCode = '403';
