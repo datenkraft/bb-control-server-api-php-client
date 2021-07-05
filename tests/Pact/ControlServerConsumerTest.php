@@ -41,6 +41,7 @@ abstract class ControlServerConsumerTest extends TestCase
     protected $taskType_patch;
     protected $taskStatus1;
     protected $taskStatus2;
+    protected $taskStatus3;
     protected $params;
     protected $notBefore;
 
@@ -78,6 +79,7 @@ abstract class ControlServerConsumerTest extends TestCase
         $this->taskType_patch = 'taskType_test_patch';
         $this->taskStatus1 = 'taskStatus_test_1';
         $this->taskStatus2 = 'taskStatus_test_2';
+        $this->taskStatus3 = 'taskStatus_test_3';
         $this->params = ['paramsTest' => 'test'];
         $this->notBefore = (new DateTime('2021-06-01 11:11:11'))->format(DateTimeInterface::ATOM);
     }
