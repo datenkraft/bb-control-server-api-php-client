@@ -112,6 +112,23 @@ class ControlServerConsumerGetTaskCollectionTest extends ControlServerConsumerTe
         $this->beginTest();
     }
 
+    public function testGetTaskCollectionBadRequest(): void
+    {
+        // invalid uuid query param projectId
+        $this->queryParams['filter[projectId]'] = 'invalid_uuid';
+
+        // Error code in response is 400
+        $this->expectedStatusCode = '400';
+        $this->errorResponse['errors'][0]['code'] = strval($this->expectedStatusCode);
+
+        $this->builder
+            ->given('The request query is invalid or missing')
+            ->uponReceiving('Bad GET request to /debt-line-item/csv');
+
+        $this->responseData = $this->errorResponse;
+        $this->beginTest();
+    }
+
     /**
      * @return ResponseInterface
      * @throws ConfigException
