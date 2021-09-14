@@ -2,12 +2,12 @@
 
 namespace Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception;
 
-class PostAuthRoleIdentityCollectionEndpointInternalServerErrorException extends InternalServerErrorException
+class PostAuthRoleIdentityCollectionNotFoundException extends NotFoundException
 {
     private $errorResponse;
     public function __construct(\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse $errorResponse)
     {
-        parent::__construct('Server error', 500);
+        parent::__construct('Not Found', 404);
         $this->errorResponse = $errorResponse;
     }
     public function getErrorResponse()

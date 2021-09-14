@@ -2,12 +2,12 @@
 
 namespace Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception;
 
-class GetAuthRoleIdentityCollectionEndpointBadRequestException extends BadRequestException
+class PostAuthRoleIdentityCollectionInternalServerErrorException extends InternalServerErrorException
 {
     private $errorResponse;
     public function __construct(\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse $errorResponse)
     {
-        parent::__construct('Bad Request', 400);
+        parent::__construct('Server error', 500);
         $this->errorResponse = $errorResponse;
     }
     public function getErrorResponse()

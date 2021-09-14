@@ -2,12 +2,12 @@
 
 namespace Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception;
 
-class PostAuthRoleIdentityCollectionEndpointConflictException extends ConflictException
+class GetAuthRoleCollectionInternalServerErrorException extends InternalServerErrorException
 {
     private $errorResponse;
     public function __construct(\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse $errorResponse)
     {
-        parent::__construct('Conflict', 409);
+        parent::__construct('Server error', 500);
         $this->errorResponse = $errorResponse;
     }
     public function getErrorResponse()
