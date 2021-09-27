@@ -36,6 +36,7 @@ class ControlServerConsumerGetTaskCollectionTest extends ControlServerConsumerTe
             [
                 'taskId' => 'taskId_test_get_1',
                 'projectId' => $this->projectId,
+                'identityId' => $this->matcher->uuid(),
                 'taskType' => $this->taskType_get,
                 'taskStatus' => $this->taskStatus1,
                 'params' => $this->params,
@@ -44,6 +45,7 @@ class ControlServerConsumerGetTaskCollectionTest extends ControlServerConsumerTe
             [
                 'taskId' => 'taskId_test_get_2',
                 'projectId' => $this->projectId,
+                'identityId' => $this->matcher->uuid(),
                 'taskType' => $this->taskType_get,
                 'taskStatus' => $this->taskStatus2,
                 'params' => $this->params,
