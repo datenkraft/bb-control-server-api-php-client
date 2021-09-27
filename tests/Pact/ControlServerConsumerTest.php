@@ -18,34 +18,34 @@ use PhpPact\Consumer\Model\ProviderResponse;
  */
 abstract class ControlServerConsumerTest extends TestCase
 {
-    protected $builder;
-    protected $config;
+    protected InteractionBuilder $builder;
+    protected MockServerEnvConfig $config;
 
-    protected $token;
+    protected string $token;
 
-    protected $method;
-    protected $path;
+    protected string $method;
+    protected string $path;
 
-    protected $requestHeaders;
-    protected $responseHeaders;
-    protected $expectedStatusCode;
+    protected array $requestHeaders;
+    protected array $responseHeaders;
+    protected string $expectedStatusCode;
 
-    protected $requestData;
-    protected $responseData;
-    protected $errorResponse;
+    protected array $requestData;
+    protected array $responseData;
+    protected array $errorResponse;
 
-    protected $matcher;
+    protected Matcher $matcher;
 
-    protected $projectId;
-    protected $taskType_get;
-    protected $taskType_patch;
-    protected $taskStatus1;
-    protected $taskStatus2;
-    protected $taskStatus3;
-    protected $params;
-    protected $notBefore;
+    protected string $projectId;
+    protected string $taskType_get;
+    protected string $taskType_patch;
+    protected string $taskStatus1;
+    protected string $taskStatus2;
+    protected string $taskStatus3;
+    protected array $params;
+    protected string $notBefore;
 
-    protected $queryParams;
+    protected array $queryParams = [];
 
     /**
      * @throws Exception
@@ -53,6 +53,9 @@ abstract class ControlServerConsumerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
+        $this->token = getenv('CONTRACT_TEST_CLIENT_TOKEN');
+
         $this->matcher = new Matcher();
         $this->config = new MockServerEnvConfig();
         try {

@@ -78,6 +78,6 @@ class GetTaskCollection extends \Datenkraft\Backbone\Client\ControlServerApi\Gen
     }
     public function getAuthenticationScopes() : array
     {
-        return array('oAuthAuthorization');
+        return array();
     }
 }

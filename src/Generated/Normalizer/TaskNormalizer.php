@@ -39,6 +39,9 @@ class TaskNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         if (\array_key_exists('taskId', $data)) {
             $object->setTaskId($data['taskId']);
         }
+        if (\array_key_exists('identityId', $data)) {
+            $object->setIdentityId($data['identityId']);
+        }
         if (\array_key_exists('projectId', $data)) {
             $object->setProjectId($data['projectId']);
         }
@@ -63,6 +66,7 @@ class TaskNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
     {
         $data = array();
         $data['taskId'] = $object->getTaskId();
+        $data['identityId'] = $object->getIdentityId();
         $data['projectId'] = $object->getProjectId();
         $data['taskType'] = $object->getTaskType();
         $data['taskStatus'] = $object->getTaskStatus();
