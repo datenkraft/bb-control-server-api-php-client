@@ -11,6 +11,12 @@ class Task
      */
     protected $taskId;
     /**
+     * Identity Id
+     *
+     * @var string
+     */
+    protected $identityId;
+    /**
      * Project Id
      *
      * @var string
@@ -59,6 +65,27 @@ class Task
     public function setTaskId(string $taskId) : self
     {
         $this->taskId = $taskId;
+        return $this;
+    }
+    /**
+     * Identity Id
+     *
+     * @return string
+     */
+    public function getIdentityId() : string
+    {
+        return $this->identityId;
+    }
+    /**
+     * Identity Id
+     *
+     * @param string $identityId
+     *
+     * @return self
+     */
+    public function setIdentityId(string $identityId) : self
+    {
+        $this->identityId = $identityId;
         return $this;
     }
     /**

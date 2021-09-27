@@ -76,6 +76,6 @@ class PatchTask extends \Datenkraft\Backbone\Client\ControlServerApi\Generated\R
     }
     public function getAuthenticationScopes() : array
     {
-        return array('oAuthAuthorization');
+        return array();
     }
 }

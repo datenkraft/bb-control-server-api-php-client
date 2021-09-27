@@ -492,14 +492,7 @@
                             }
                         }
                     }
-                },
-                "security": [
-                    {
-                        "oAuthAuthorization": [
-                            "bb-control-server-api/task:get"
-                        ]
-                    }
-                ]
+                }
             }
         },
         "/task/{taskId}": {
@@ -602,14 +595,7 @@
                             }
                         }
                     }
-                },
-                "security": [
-                    {
-                        "oAuthAuthorization": [
-                            "bb-control-server-api/task:patch"
-                        ]
-                    }
-                ]
+                }
             }
         }
     },
@@ -716,6 +702,7 @@
             "task": {
                 "required": [
                     "taskId",
+                    "identityId",
                     "projectId",
                     "taskType",
                     "taskStatus"
@@ -723,6 +710,10 @@
                 "properties": {
                     "taskId": {
                         "description": "Task Id",
+                        "type": "string"
+                    },
+                    "identityId": {
+                        "description": "Identity Id",
                         "type": "string"
                     },
                     "projectId": {
@@ -778,10 +769,7 @@
                     "clientCredentials": {
                         "tokenUrl": "https://localhost:30250/oauth/token",
                         "refreshUrl": "UNDEFINED",
-                        "scopes": {
-                            "bb-control-server-api/task:get": "Get Tasks from the Control Server API",
-                            "bb-control-server-api/task:patch": "Update Tasks in the Control Server API"
-                        }
+                        "scopes": {}
                     }
                 }
             }

@@ -16,9 +16,9 @@ use Psr\Http\Message\ResponseInterface;
  */
 class ControlServerConsumerPatchTaskTest extends ControlServerConsumerTest
 {
-    protected $taskId;
-    protected $taskIdValid;
-    protected $taskIdInvalid;
+    protected string $taskId;
+    protected string $taskIdValid;
+    protected string $taskIdInvalid;
 
     /**
      * @throws Exception
@@ -28,8 +28,6 @@ class ControlServerConsumerPatchTaskTest extends ControlServerConsumerTest
         parent::setUp();
 
         $this->method = 'PATCH';
-
-        $this->token = getenv('VALID_TOKEN_TASK_PATCH');
 
         $this->requestHeaders = [
             'Authorization' => 'Bearer ' . $this->token,
@@ -93,8 +91,7 @@ class ControlServerConsumerPatchTaskTest extends ControlServerConsumerTest
 
     public function testPatchTaskForbidden(): void
     {
-        // Token with invalid scope
-        $this->token = getenv('VALID_TOKEN_SKU_USAGE_POST');
+        $this->token = getenv('CONTRACT_TEST_CLIENT_WITHOUT_PERMISSIONS_TOKEN');
         $this->requestHeaders['Authorization'] = 'Bearer ' . $this->token;
 
         // Error code in response is 403
