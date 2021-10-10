@@ -6,7 +6,7 @@ use Datenkraft\Backbone\Client\BaseApi\ClientFactory;
 use Datenkraft\Backbone\Client\BaseApi\Exceptions\AuthException;
 use Datenkraft\Backbone\Client\BaseApi\Exceptions\ConfigException;
 use Datenkraft\Backbone\Client\ControlServerApi\Client;
-use Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\UpdateTask;
+use Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\UpdateTaskResource;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
 
@@ -174,7 +174,7 @@ class ControlServerConsumerPatchTaskTest extends ControlServerConsumerTest
         $factory->setToken($this->token);
         $client = Client::createWithFactory($factory, $this->config->getBaseUri());
 
-        $task = (new UpdateTask())
+        $task = (new UpdateTaskResource())
             ->setTaskStatus($this->requestData['taskStatus']);
 
         return $client->patchTask($this->taskId, $task, Client::FETCH_RESPONSE);

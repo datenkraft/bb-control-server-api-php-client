@@ -11,18 +11,18 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-class UpdateTaskNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class UpdateTaskResourceNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\UpdateTask';
+        return $type === 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\UpdateTaskResource';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\UpdateTask';
+        return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\UpdateTaskResource';
     }
     public function denormalize($data, $class, $format = null, array $context = array())
     {
@@ -32,7 +32,7 @@ class UpdateTaskNormalizer implements DenormalizerInterface, NormalizerInterface
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\UpdateTask();
+        $object = new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\UpdateTaskResource();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }

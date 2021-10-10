@@ -2,7 +2,7 @@
 
 namespace Datenkraft\Backbone\Client\ControlServerApi\Generated\Model;
 
-class Task
+class TaskResource
 {
     /**
      * Task Id
@@ -19,7 +19,7 @@ class Task
     /**
      * Project Id
      *
-     * @var string
+     * @var string|null
      */
     protected $projectId;
     /**
@@ -91,20 +91,20 @@ class Task
     /**
      * Project Id
      *
-     * @return string
+     * @return string|null
      */
-    public function getProjectId() : string
+    public function getProjectId() : ?string
     {
         return $this->projectId;
     }
     /**
      * Project Id
      *
-     * @param string $projectId
+     * @param string|null $projectId
      *
      * @return self
      */
-    public function setProjectId(string $projectId) : self
+    public function setProjectId(?string $projectId) : self
     {
         $this->projectId = $projectId;
         return $this;
