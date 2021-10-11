@@ -34,7 +34,7 @@ class ControlServerConsumerGetTaskCollectionTest extends ControlServerConsumerTe
         $this->requestData = [];
         $this->responseData = [
             [
-                'taskId' => 'taskId_test_get_1',
+                'taskId' => '11111111-1111-1111-1111-111111111111',
                 'projectId' => $this->projectId,
                 'identityId' => $this->matcher->uuid(),
                 'taskType' => $this->taskType_get,
@@ -43,7 +43,7 @@ class ControlServerConsumerGetTaskCollectionTest extends ControlServerConsumerTe
                 'notBefore' => $this->notBefore,
             ],
             [
-                'taskId' => 'taskId_test_get_2',
+                'taskId' => '22222222-2222-2222-2222-222222222222',
                 'projectId' => $this->projectId,
                 'identityId' => $this->matcher->uuid(),
                 'taskType' => $this->taskType_get,

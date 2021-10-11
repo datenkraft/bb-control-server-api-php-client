@@ -659,6 +659,109 @@
                     }
                 }
             }
+        },
+        "/task-template/{taskTemplateId}/task": {
+            "post": {
+                "tags": [
+                    "task-template"
+                ],
+                "summary": "Generate a task with a task template id",
+                "description": "Generate a task with a task template id",
+                "operationId": "postTaskTemplateTask",
+                "parameters": [
+                    {
+                        "name": "taskTemplateId",
+                        "in": "path",
+                        "description": "Task Template Id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/taskTemplateTaskResource"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/taskResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -824,7 +927,6 @@
                 }
             },
             "taskTemplateResource": {
-                "description": "Class TaskTemplateResource",
                 "required": [
                     "taskTemplateId",
                     "identityId",
@@ -863,6 +965,20 @@
                     },
                     "lastStartDate": {
                         "description": "Last Start Date",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "taskTemplateTaskResource": {
+                "description": "Class TaskTemplateResource",
+                "required": [
+                    "startDate"
+                ],
+                "properties": {
+                    "startDate": {
+                        "description": "Start Date",
                         "type": "string",
                         "format": "date-time"
                     }

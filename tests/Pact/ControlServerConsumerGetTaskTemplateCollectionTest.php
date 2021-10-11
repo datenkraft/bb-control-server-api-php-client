@@ -33,11 +33,11 @@ class ControlServerConsumerGetTaskTemplateCollectionTest extends ControlServerCo
 
         $this->requestData = [];
         $this->responseData = $this->matcher->eachLike([
-            'taskTemplateId' => 'taskTemplateId_test_get_1',
+            'taskTemplateId' => $this->matcher->uuid(),
             'projectId' => $this->matcher->uuid(),
             'identityId' => $this->matcher->uuid(),
             'taskType' => $this->taskType_get,
-            'params' => $this->params,
+            'paramsTemplate' => $this->matcher->somethingLike($this->params),
             'schedule' => 'P1D',
             'active' => true,
         ]);

@@ -37,8 +37,8 @@ class ControlServerConsumerPatchTaskTest extends ControlServerConsumerTest
             'Content-Type' => 'application/json'
         ];
 
-        $this->taskIdValid = 'taskId_test_patch';
-        $this->taskIdInvalid = 'taskId_test_invalid';
+        $this->taskIdValid = '33333333-3333-3333-3333-333333333333';
+        $this->taskIdInvalid = '00000000-0000-0000-0000-000000000000';
 
         $this->taskId = $this->taskIdValid;
 
@@ -48,9 +48,10 @@ class ControlServerConsumerPatchTaskTest extends ControlServerConsumerTest
         $this->responseData = [
             'taskId' => $this->taskId,
             'projectId' => $this->projectId,
+            'identityId' => $this->matcher->uuid(),
             'taskType' => $this->taskType_patch,
             'taskStatus' => $this->taskStatus3,
-            'params' => $this->params,
+            'params' => $this->matcher->somethingLike($this->params),
             'notBefore' => $this->notBefore,
         ];
 
@@ -134,9 +135,7 @@ class ControlServerConsumerPatchTaskTest extends ControlServerConsumerTest
         $this->errorResponse['errors'][0]['code'] = strval($this->expectedStatusCode);
 
         $this->builder
-            ->given(
-                'A Task with taskId does not exist'
-            )
+            ->given('A Task with taskId does not exist')
             ->uponReceiving('Not Found PATCH request to /task/{taskId}');
 
         $this->responseData = $this->errorResponse;
