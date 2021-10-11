@@ -37,7 +37,6 @@ class ControlServerConsumerGetTaskTemplateCollectionTest extends ControlServerCo
             'projectId' => $this->matcher->uuid(),
             'identityId' => $this->matcher->uuid(),
             'taskType' => $this->taskType_get,
-            'paramsTemplate' => $this->matcher->somethingLike($this->params),
             'schedule' => 'P1D',
             'active' => true,
         ]);

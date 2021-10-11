@@ -47,7 +47,7 @@ class ControlServerConsumerPostTaskTemplateTaskTest extends ControlServerConsume
 
         $this->taskTemplateId = $this->taskTemplateIdValid;
 
-        $this->startDate = (new DateTime('2021-01-28'))->format(DateTimeInterface::ATOM);
+        $this->startDate = (new DateTime('2021-10-10'))->format(DateTimeInterface::ATOM);
 
         $this->requestData = [
             'startDate' => $this->startDate,
@@ -57,9 +57,9 @@ class ControlServerConsumerPostTaskTemplateTaskTest extends ControlServerConsume
             'projectId' => $this->matcher->uuid(),
             'identityId' => $this->matcher->uuid(),
             'taskType' => $this->taskType_get,
-            'taskStatus' => $this->taskStatus1,
+            'taskStatus' => 'open',
             'params' => $this->matcher->like($this->params),
-            'notBefore' => (new DateTime())->format(DateTimeInterface::ATOM),
+            'notBefore' => (new DateTime('2021-10-11'))->format(DateTimeInterface::ATOM),
         ];
 
         $this->path = '/task-template/' . $this->taskTemplateId . '/task';
