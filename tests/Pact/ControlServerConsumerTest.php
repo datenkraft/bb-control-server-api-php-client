@@ -5,6 +5,7 @@ namespace Pact;
 use DateTime;
 use DateTimeInterface;
 use Exception;
+use GuzzleHttp\Client as GuzzleHttpClient;
 use PhpPact\Consumer\InteractionBuilder;
 use PhpPact\Consumer\Matcher\Matcher;
 use PhpPact\Standalone\MockService\MockServerEnvConfig;
@@ -20,6 +21,8 @@ abstract class ControlServerConsumerTest extends TestCase
 {
     protected InteractionBuilder $builder;
     protected MockServerEnvConfig $config;
+
+    protected GuzzleHttpClient $guzzleClient;
 
     protected string $token;
 
@@ -67,6 +70,8 @@ abstract class ControlServerConsumerTest extends TestCase
             );
         }
         $this->builder = new InteractionBuilder($this->config);
+
+        $this->guzzleClient = new GuzzleHttpClient(['base_uri' => $this->config->getBaseUri()]);
 
         $this->errorResponse = [
             'errors' => [

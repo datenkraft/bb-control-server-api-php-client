@@ -2,7 +2,7 @@
 
 namespace Datenkraft\Backbone\Client\ControlServerApi\Generated\Model;
 
-class UpdateTask
+class UpdateTaskResource
 {
     /**
      * Task Status

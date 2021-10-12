@@ -6,7 +6,7 @@ use Datenkraft\Backbone\Client\BaseApi\ClientFactory;
 use Datenkraft\Backbone\Client\BaseApi\Exceptions\AuthException;
 use Datenkraft\Backbone\Client\BaseApi\Exceptions\ConfigException;
 use Datenkraft\Backbone\Client\ControlServerApi\Client;
-use Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\UpdateTask;
+use Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\UpdateTaskResource;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
 
@@ -37,8 +37,8 @@ class ControlServerConsumerPatchTaskTest extends ControlServerConsumerTest
             'Content-Type' => 'application/json'
         ];
 
-        $this->taskIdValid = 'taskId_test_patch';
-        $this->taskIdInvalid = 'taskId_test_invalid';
+        $this->taskIdValid = '33333333-3333-3333-3333-333333333333';
+        $this->taskIdInvalid = '00000000-0000-0000-0000-000000000000';
 
         $this->taskId = $this->taskIdValid;
 
@@ -48,9 +48,10 @@ class ControlServerConsumerPatchTaskTest extends ControlServerConsumerTest
         $this->responseData = [
             'taskId' => $this->taskId,
             'projectId' => $this->projectId,
+            'identityId' => $this->matcher->uuid(),
             'taskType' => $this->taskType_patch,
             'taskStatus' => $this->taskStatus3,
-            'params' => $this->params,
+            'params' => $this->matcher->somethingLike($this->params),
             'notBefore' => $this->notBefore,
         ];
 
@@ -134,9 +135,7 @@ class ControlServerConsumerPatchTaskTest extends ControlServerConsumerTest
         $this->errorResponse['errors'][0]['code'] = strval($this->expectedStatusCode);
 
         $this->builder
-            ->given(
-                'A Task with taskId does not exist'
-            )
+            ->given('A Task with taskId does not exist')
             ->uponReceiving('Not Found PATCH request to /task/{taskId}');
 
         $this->responseData = $this->errorResponse;
@@ -174,7 +173,7 @@ class ControlServerConsumerPatchTaskTest extends ControlServerConsumerTest
         $factory->setToken($this->token);
         $client = Client::createWithFactory($factory, $this->config->getBaseUri());
 
-        $task = (new UpdateTask())
+        $task = (new UpdateTaskResource())
             ->setTaskStatus($this->requestData['taskStatus']);
 
         return $client->patchTask($this->taskId, $task, Client::FETCH_RESPONSE);

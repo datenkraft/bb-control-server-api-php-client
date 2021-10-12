@@ -447,7 +447,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/getTaskCollectionResponse"
+                                    "$ref": "#/components/schemas/taskResourceCollection"
                                 }
                             }
                         }
@@ -519,7 +519,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/updateTask"
+                                "$ref": "#/components/schemas/updateTaskResource"
                             }
                         }
                     }
@@ -530,7 +530,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/task"
+                                    "$ref": "#/components/schemas/taskResource"
                                 }
                             }
                         }
@@ -587,6 +587,171 @@
                     },
                     "500": {
                         "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/task-template": {
+            "get": {
+                "tags": [
+                    "task-template"
+                ],
+                "summary": "Get task templates",
+                "description": "Get task templates",
+                "operationId": "getTaskTemplateCollection",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/taskTemplateResourceCollection"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/task-template/{taskTemplateId}/task": {
+            "post": {
+                "tags": [
+                    "task-template"
+                ],
+                "summary": "Generate a task with a task template id",
+                "description": "Generate a task with a task template id",
+                "operationId": "postTaskTemplateTask",
+                "parameters": [
+                    {
+                        "name": "taskTemplateId",
+                        "in": "path",
+                        "description": "Task Template Id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/taskTemplateTaskResource"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/taskResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -699,11 +864,10 @@
                     "$ref": "#/components/schemas/authRoleIdentityResource"
                 }
             },
-            "task": {
+            "taskResource": {
                 "required": [
                     "taskId",
                     "identityId",
-                    "projectId",
                     "taskType",
                     "taskStatus"
                 ],
@@ -717,6 +881,7 @@
                         "type": "string"
                     },
                     "projectId": {
+                        "nullable": true,
                         "description": "Project Id",
                         "type": "string"
                     },
@@ -741,13 +906,7 @@
                 },
                 "type": "object"
             },
-            "getTaskCollectionResponse": {
-                "type": "array",
-                "items": {
-                    "$ref": "#/components/schemas/task"
-                }
-            },
-            "updateTask": {
+            "updateTaskResource": {
                 "description": "Class TaskResource",
                 "required": [
                     "taskStatus"
@@ -759,6 +918,79 @@
                     }
                 },
                 "type": "object"
+            },
+            "taskResourceCollection": {
+                "description": "Class TaskResourceCollection",
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/taskResource"
+                }
+            },
+            "taskTemplateResource": {
+                "required": [
+                    "taskTemplateId",
+                    "identityId",
+                    "taskType",
+                    "paramsTemplate",
+                    "schedule",
+                    "active",
+                    "lastStartDate"
+                ],
+                "properties": {
+                    "taskTemplateId": {
+                        "description": "Task Template Id",
+                        "type": "string"
+                    },
+                    "identityId": {
+                        "description": "Identity Id",
+                        "type": "string"
+                    },
+                    "projectId": {
+                        "nullable": true,
+                        "description": "Project Id",
+                        "type": "string"
+                    },
+                    "taskType": {
+                        "description": "Task Type",
+                        "type": "string"
+                    },
+                    "paramsTemplate": {
+                        "description": "Params Template",
+                        "type": "object"
+                    },
+                    "params": {
+                        "nullable": true,
+                        "description": "Params",
+                        "type": "object"
+                    },
+                    "lastStartDate": {
+                        "description": "Last Start Date",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "taskTemplateTaskResource": {
+                "description": "Class TaskTemplateResource",
+                "required": [
+                    "startDate"
+                ],
+                "properties": {
+                    "startDate": {
+                        "description": "Start Date",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "taskTemplateResourceCollection": {
+                "description": "Class TaskTemplateResourceCollection",
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/taskTemplateResource"
+                }
             }
         },
         "securitySchemes": {
@@ -767,7 +999,7 @@
                 "description": "OAuth2 Authorization",
                 "flows": {
                     "clientCredentials": {
-                        "tokenUrl": "https://localhost:30250/oauth/token",
+                        "tokenUrl": "https://authentication-api.conqore.niceshops.com/oauth/token",
                         "refreshUrl": "UNDEFINED",
                         "scopes": {}
                     }

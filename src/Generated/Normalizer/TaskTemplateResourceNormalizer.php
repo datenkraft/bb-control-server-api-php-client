@@ -11,18 +11,18 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-class TaskNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class TaskTemplateResourceNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\Task';
+        return $type === 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\TaskTemplateResource';
     }
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\Task';
+        return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\TaskTemplateResource';
     }
     public function denormalize($data, $class, $format = null, array $context = array())
     {
@@ -32,24 +32,27 @@ class TaskNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\Task();
+        $object = new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskTemplateResource();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('taskId', $data)) {
-            $object->setTaskId($data['taskId']);
+        if (\array_key_exists('taskTemplateId', $data)) {
+            $object->setTaskTemplateId($data['taskTemplateId']);
         }
         if (\array_key_exists('identityId', $data)) {
             $object->setIdentityId($data['identityId']);
         }
-        if (\array_key_exists('projectId', $data)) {
+        if (\array_key_exists('projectId', $data) && $data['projectId'] !== null) {
             $object->setProjectId($data['projectId']);
+        }
+        elseif (\array_key_exists('projectId', $data) && $data['projectId'] === null) {
+            $object->setProjectId(null);
         }
         if (\array_key_exists('taskType', $data)) {
             $object->setTaskType($data['taskType']);
         }
-        if (\array_key_exists('taskStatus', $data)) {
-            $object->setTaskStatus($data['taskStatus']);
+        if (\array_key_exists('paramsTemplate', $data)) {
+            $object->setParamsTemplate($data['paramsTemplate']);
         }
         if (\array_key_exists('params', $data) && $data['params'] !== null) {
             $object->setParams($data['params']);
@@ -57,25 +60,25 @@ class TaskNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         elseif (\array_key_exists('params', $data) && $data['params'] === null) {
             $object->setParams(null);
         }
-        if (\array_key_exists('notBefore', $data)) {
-            $object->setNotBefore(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['notBefore']));
+        if (\array_key_exists('lastStartDate', $data)) {
+            $object->setLastStartDate(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['lastStartDate']));
         }
         return $object;
     }
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        $data['taskId'] = $object->getTaskId();
+        $data['taskTemplateId'] = $object->getTaskTemplateId();
         $data['identityId'] = $object->getIdentityId();
-        $data['projectId'] = $object->getProjectId();
+        if (null !== $object->getProjectId()) {
+            $data['projectId'] = $object->getProjectId();
+        }
         $data['taskType'] = $object->getTaskType();
-        $data['taskStatus'] = $object->getTaskStatus();
+        $data['paramsTemplate'] = $object->getParamsTemplate();
         if (null !== $object->getParams()) {
             $data['params'] = $object->getParams();
         }
-        if (null !== $object->getNotBefore()) {
-            $data['notBefore'] = $object->getNotBefore()->format('Y-m-d\\TH:i:sP');
-        }
+        $data['lastStartDate'] = $object->getLastStartDate()->format('Y-m-d\\TH:i:sP');
         return $data;
     }
 }

@@ -9,9 +9,9 @@ class PatchTask extends \Datenkraft\Backbone\Client\ControlServerApi\Generated\R
      * Update one or more fields of a Task
      *
      * @param string $taskId Task Id
-     * @param \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\UpdateTask $requestBody 
+     * @param \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\UpdateTaskResource $requestBody 
      */
-    public function __construct(string $taskId, \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\UpdateTask $requestBody)
+    public function __construct(string $taskId, \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\UpdateTaskResource $requestBody)
     {
         $this->taskId = $taskId;
         $this->body = $requestBody;
@@ -27,7 +27,7 @@ class PatchTask extends \Datenkraft\Backbone\Client\ControlServerApi\Generated\R
     }
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null) : array
     {
-        if ($this->body instanceof \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\UpdateTask) {
+        if ($this->body instanceof \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\UpdateTaskResource) {
             return array(array('Content-Type' => array('application/json')), $serializer->serialize($this->body, 'json'));
         }
         return array(array(), null);
@@ -47,12 +47,12 @@ class PatchTask extends \Datenkraft\Backbone\Client\ControlServerApi\Generated\R
      * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
      *
-     * @return null|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\Task
+     * @return null|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskResource
      */
     protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         if (is_null($contentType) === false && (200 === $status && mb_strpos($contentType, 'application/json') !== false)) {
-            return $serializer->deserialize($body, 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\Task', 'json');
+            return $serializer->deserialize($body, 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\TaskResource', 'json');
         }
         if (is_null($contentType) === false && (401 === $status && mb_strpos($contentType, 'application/json') !== false)) {
             throw new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskUnauthorizedException($serializer->deserialize($body, 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\ErrorResponse', 'json'));
