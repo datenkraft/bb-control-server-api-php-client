@@ -14,21 +14,27 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    protected $normalizers = array('Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\ErrorResponse' => 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Normalizer\\ErrorResponseNormalizer', 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\Error' => 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Normalizer\\ErrorNormalizer', 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\TaskResource' => 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Normalizer\\TaskResourceNormalizer', 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\UpdateTaskResource' => 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Normalizer\\UpdateTaskResourceNormalizer', 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\TaskTemplateResource' => 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Normalizer\\TaskTemplateResourceNormalizer', 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\TaskTemplateTaskResource' => 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Normalizer\\TaskTemplateTaskResourceNormalizer', 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\AuthPermissionResource' => 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Normalizer\\AuthPermissionResourceNormalizer', 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\AuthRoleIdentityResource' => 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Normalizer\\AuthRoleIdentityResourceNormalizer', 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\AuthRoleResource' => 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Normalizer\\AuthRoleResourceNormalizer', '\\Jane\\JsonSchemaRuntime\\Reference' => '\\Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Runtime\\Normalizer\\ReferenceNormalizer'), $normalizersCache = array();
-    public function supportsDenormalization($data, $type, $format = null)
+    protected $normalizers = array('Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\ErrorResponse' => 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Normalizer\\ErrorResponseNormalizer', 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\Error' => 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Normalizer\\ErrorNormalizer', 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\TaskResource' => 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Normalizer\\TaskResourceNormalizer', 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\UpdateTaskResource' => 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Normalizer\\UpdateTaskResourceNormalizer', 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\TaskTemplateResource' => 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Normalizer\\TaskTemplateResourceNormalizer', 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\TaskTemplateTaskResource' => 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Normalizer\\TaskTemplateTaskResourceNormalizer', 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\AuthPermissionResource' => 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Normalizer\\AuthPermissionResourceNormalizer', 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\AuthRoleIdentityResource' => 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Normalizer\\AuthRoleIdentityResourceNormalizer', 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\AuthRoleResource' => 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Normalizer\\AuthRoleResourceNormalizer', '\\Jane\\Component\\JsonSchemaRuntime\\Reference' => '\\Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Runtime\\Normalizer\\ReferenceNormalizer'), $normalizersCache = array();
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return array_key_exists($type, $this->normalizers);
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && array_key_exists(get_class($data), $this->normalizers);
     }
+    /**
+     * @return array|string|int|float|bool|\ArrayObject|null
+     */
     public function normalize($object, $format = null, array $context = array())
     {
         $normalizerClass = $this->normalizers[get_class($object)];
         $normalizer = $this->getNormalizer($normalizerClass);
         return $normalizer->normalize($object, $format, $context);
     }
+    /**
+     * @return mixed
+     */
     public function denormalize($data, $class, $format = null, array $context = array())
     {
         $denormalizerClass = $this->normalizers[$class];
