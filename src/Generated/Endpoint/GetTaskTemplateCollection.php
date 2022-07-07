@@ -52,6 +52,6 @@ class GetTaskTemplateCollection extends \Datenkraft\Backbone\Client\ControlServe
     }
     public function getAuthenticationScopes() : array
     {
-        return array();
+        return array('oAuthAuthorization', 'bearerAuth');
     }
 }

@@ -5,15 +5,17 @@ namespace Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint;
 class GetTaskCollection extends \Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\Client\BaseEndpoint implements \Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\Client\Endpoint
 {
     /**
-     * Get tasks
-     *
-     * @param array $queryParameters {
-     *     @var string $filter[projectId] Task projectId filter
-     *     @var string $filter[taskType] Task taskType filter
-     *     @var string $filter[notBefore] Task notBefore filter
-     *     @var array $filter[taskStatus] Task taskStatus filter
-     * }
-     */
+    * Get tasks. By default, only tasks assigned to the requesting identity are provided.
+    If the requesting identity has the permission bb-control-server-api/task:read-all, all tasks are provided.
+    *
+    * @param array $queryParameters {
+    *     @var string $filter[projectId] Task projectId filter
+    *     @var string $filter[taskType] Task taskType filter
+    *     @var string $filter[notBefore] Task notBefore filter
+    *     @var array $filter[taskStatus] Task taskStatus filter
+    *     @var string $filter[identityId] Task identityId filter
+    * }
+    */
     public function __construct(array $queryParameters = array())
     {
         $this->queryParameters = $queryParameters;
@@ -38,13 +40,14 @@ class GetTaskCollection extends \Datenkraft\Backbone\Client\ControlServerApi\Gen
     protected function getQueryOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(array('filter[projectId]', 'filter[taskType]', 'filter[notBefore]', 'filter[taskStatus]'));
+        $optionsResolver->setDefined(array('filter[projectId]', 'filter[taskType]', 'filter[notBefore]', 'filter[taskStatus]', 'filter[identityId]'));
         $optionsResolver->setRequired(array());
         $optionsResolver->setDefaults(array());
         $optionsResolver->setAllowedTypes('filter[projectId]', array('string'));
         $optionsResolver->setAllowedTypes('filter[taskType]', array('string'));
         $optionsResolver->setAllowedTypes('filter[notBefore]', array('string'));
         $optionsResolver->setAllowedTypes('filter[taskStatus]', array('array'));
+        $optionsResolver->setAllowedTypes('filter[identityId]', array('string'));
         return $optionsResolver;
     }
     /**
@@ -78,6 +81,6 @@ class GetTaskCollection extends \Datenkraft\Backbone\Client\ControlServerApi\Gen
     }
     public function getAuthenticationScopes() : array
     {
-        return array();
+        return array('oAuthAuthorization', 'bearerAuth');
     }
 }
