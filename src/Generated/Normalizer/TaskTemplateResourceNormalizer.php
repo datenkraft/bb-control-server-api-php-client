@@ -4,6 +4,7 @@ namespace Datenkraft\Backbone\Client\ControlServerApi\Generated\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\Normalizer\CheckArray;
+use Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,11 +17,12 @@ class TaskTemplateResourceNormalizer implements DenormalizerInterface, Normalize
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null, array $context = array()) : bool
     {
         return $type === 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\TaskTemplateResource';
     }
-    public function supportsNormalization($data, $format = null) : bool
+    public function supportsNormalization($data, $format = null, array $context = array()) : bool
     {
         return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\TaskTemplateResource';
     }
@@ -41,30 +43,50 @@ class TaskTemplateResourceNormalizer implements DenormalizerInterface, Normalize
         }
         if (\array_key_exists('taskTemplateId', $data)) {
             $object->setTaskTemplateId($data['taskTemplateId']);
+            unset($data['taskTemplateId']);
         }
         if (\array_key_exists('identityId', $data)) {
             $object->setIdentityId($data['identityId']);
+            unset($data['identityId']);
         }
         if (\array_key_exists('projectId', $data) && $data['projectId'] !== null) {
             $object->setProjectId($data['projectId']);
+            unset($data['projectId']);
         }
         elseif (\array_key_exists('projectId', $data) && $data['projectId'] === null) {
             $object->setProjectId(null);
         }
         if (\array_key_exists('taskType', $data)) {
             $object->setTaskType($data['taskType']);
+            unset($data['taskType']);
         }
         if (\array_key_exists('paramsTemplate', $data)) {
-            $object->setParamsTemplate($data['paramsTemplate']);
+            $values = new \ArrayObject(array(), \ArrayObject::ARRAY_AS_PROPS);
+            foreach ($data['paramsTemplate'] as $key => $value) {
+                $values[$key] = $value;
+            }
+            $object->setParamsTemplate($values);
+            unset($data['paramsTemplate']);
         }
         if (\array_key_exists('params', $data) && $data['params'] !== null) {
-            $object->setParams($data['params']);
+            $values_1 = new \ArrayObject(array(), \ArrayObject::ARRAY_AS_PROPS);
+            foreach ($data['params'] as $key_1 => $value_1) {
+                $values_1[$key_1] = $value_1;
+            }
+            $object->setParams($values_1);
+            unset($data['params']);
         }
         elseif (\array_key_exists('params', $data) && $data['params'] === null) {
             $object->setParams(null);
         }
         if (\array_key_exists('lastStartDate', $data)) {
             $object->setLastStartDate(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['lastStartDate']));
+            unset($data['lastStartDate']);
+        }
+        foreach ($data as $key_2 => $value_2) {
+            if (preg_match('/.*/', (string) $key_2)) {
+                $object[$key_2] = $value_2;
+            }
         }
         return $object;
     }
@@ -76,15 +98,28 @@ class TaskTemplateResourceNormalizer implements DenormalizerInterface, Normalize
         $data = array();
         $data['taskTemplateId'] = $object->getTaskTemplateId();
         $data['identityId'] = $object->getIdentityId();
-        if (null !== $object->getProjectId()) {
+        if ($object->isInitialized('projectId') && null !== $object->getProjectId()) {
             $data['projectId'] = $object->getProjectId();
         }
         $data['taskType'] = $object->getTaskType();
-        $data['paramsTemplate'] = $object->getParamsTemplate();
-        if (null !== $object->getParams()) {
-            $data['params'] = $object->getParams();
+        $values = array();
+        foreach ($object->getParamsTemplate() as $key => $value) {
+            $values[$key] = $value;
+        }
+        $data['paramsTemplate'] = $values;
+        if ($object->isInitialized('params') && null !== $object->getParams()) {
+            $values_1 = array();
+            foreach ($object->getParams() as $key_1 => $value_1) {
+                $values_1[$key_1] = $value_1;
+            }
+            $data['params'] = $values_1;
         }
         $data['lastStartDate'] = $object->getLastStartDate()->format('Y-m-d\\TH:i:sP');
+        foreach ($object as $key_2 => $value_2) {
+            if (preg_match('/.*/', (string) $key_2)) {
+                $data[$key_2] = $value_2;
+            }
+        }
         return $data;
     }
 }

@@ -2,8 +2,16 @@
 
 namespace Datenkraft\Backbone\Client\ControlServerApi\Generated\Model;
 
-class TaskResource
+class TaskResource extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * Task Id
      *
@@ -37,7 +45,7 @@ class TaskResource
     /**
      * Params
      *
-     * @var mixed|null
+     * @var mixed[]|null
      */
     protected $params;
     /**
@@ -64,6 +72,7 @@ class TaskResource
      */
     public function setTaskId(string $taskId) : self
     {
+        $this->initialized['taskId'] = true;
         $this->taskId = $taskId;
         return $this;
     }
@@ -85,6 +94,7 @@ class TaskResource
      */
     public function setIdentityId(string $identityId) : self
     {
+        $this->initialized['identityId'] = true;
         $this->identityId = $identityId;
         return $this;
     }
@@ -106,6 +116,7 @@ class TaskResource
      */
     public function setProjectId(?string $projectId) : self
     {
+        $this->initialized['projectId'] = true;
         $this->projectId = $projectId;
         return $this;
     }
@@ -127,6 +138,7 @@ class TaskResource
      */
     public function setTaskType(string $taskType) : self
     {
+        $this->initialized['taskType'] = true;
         $this->taskType = $taskType;
         return $this;
     }
@@ -148,27 +160,29 @@ class TaskResource
      */
     public function setTaskStatus(string $taskStatus) : self
     {
+        $this->initialized['taskStatus'] = true;
         $this->taskStatus = $taskStatus;
         return $this;
     }
     /**
      * Params
      *
-     * @return mixed
+     * @return mixed[]|null
      */
-    public function getParams()
+    public function getParams() : ?iterable
     {
         return $this->params;
     }
     /**
      * Params
      *
-     * @param mixed $params
+     * @param mixed[]|null $params
      *
      * @return self
      */
-    public function setParams($params) : self
+    public function setParams(?iterable $params) : self
     {
+        $this->initialized['params'] = true;
         $this->params = $params;
         return $this;
     }
@@ -190,6 +204,7 @@ class TaskResource
      */
     public function setNotBefore(\DateTime $notBefore) : self
     {
+        $this->initialized['notBefore'] = true;
         $this->notBefore = $notBefore;
         return $this;
     }
