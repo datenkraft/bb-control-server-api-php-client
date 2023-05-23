@@ -2,8 +2,16 @@
 
 namespace Datenkraft\Backbone\Client\ControlServerApi\Generated\Model;
 
-class TaskTemplateResource
+class TaskTemplateResource extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * Task Template Id
      *
@@ -31,13 +39,13 @@ class TaskTemplateResource
     /**
      * Params Template
      *
-     * @var mixed
+     * @var mixed[]
      */
     protected $paramsTemplate;
     /**
      * Params
      *
-     * @var mixed|null
+     * @var mixed[]|null
      */
     protected $params;
     /**
@@ -64,6 +72,7 @@ class TaskTemplateResource
      */
     public function setTaskTemplateId(string $taskTemplateId) : self
     {
+        $this->initialized['taskTemplateId'] = true;
         $this->taskTemplateId = $taskTemplateId;
         return $this;
     }
@@ -85,6 +94,7 @@ class TaskTemplateResource
      */
     public function setIdentityId(string $identityId) : self
     {
+        $this->initialized['identityId'] = true;
         $this->identityId = $identityId;
         return $this;
     }
@@ -106,6 +116,7 @@ class TaskTemplateResource
      */
     public function setProjectId(?string $projectId) : self
     {
+        $this->initialized['projectId'] = true;
         $this->projectId = $projectId;
         return $this;
     }
@@ -127,48 +138,51 @@ class TaskTemplateResource
      */
     public function setTaskType(string $taskType) : self
     {
+        $this->initialized['taskType'] = true;
         $this->taskType = $taskType;
         return $this;
     }
     /**
      * Params Template
      *
-     * @return mixed
+     * @return mixed[]
      */
-    public function getParamsTemplate()
+    public function getParamsTemplate() : iterable
     {
         return $this->paramsTemplate;
     }
     /**
      * Params Template
      *
-     * @param mixed $paramsTemplate
+     * @param mixed[] $paramsTemplate
      *
      * @return self
      */
-    public function setParamsTemplate($paramsTemplate) : self
+    public function setParamsTemplate(iterable $paramsTemplate) : self
     {
+        $this->initialized['paramsTemplate'] = true;
         $this->paramsTemplate = $paramsTemplate;
         return $this;
     }
     /**
      * Params
      *
-     * @return mixed
+     * @return mixed[]|null
      */
-    public function getParams()
+    public function getParams() : ?iterable
     {
         return $this->params;
     }
     /**
      * Params
      *
-     * @param mixed $params
+     * @param mixed[]|null $params
      *
      * @return self
      */
-    public function setParams($params) : self
+    public function setParams(?iterable $params) : self
     {
+        $this->initialized['params'] = true;
         $this->params = $params;
         return $this;
     }
@@ -190,6 +204,7 @@ class TaskTemplateResource
      */
     public function setLastStartDate(\DateTime $lastStartDate) : self
     {
+        $this->initialized['lastStartDate'] = true;
         $this->lastStartDate = $lastStartDate;
         return $this;
     }

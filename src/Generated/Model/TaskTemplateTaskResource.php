@@ -2,8 +2,16 @@
 
 namespace Datenkraft\Backbone\Client\ControlServerApi\Generated\Model;
 
-class TaskTemplateTaskResource
+class TaskTemplateTaskResource extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * Start Date
      *
@@ -28,6 +36,7 @@ class TaskTemplateTaskResource
      */
     public function setStartDate(\DateTime $startDate) : self
     {
+        $this->initialized['startDate'] = true;
         $this->startDate = $startDate;
         return $this;
     }

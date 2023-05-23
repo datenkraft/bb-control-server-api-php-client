@@ -4,6 +4,7 @@ namespace Datenkraft\Backbone\Client\ControlServerApi\Generated\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\Normalizer\CheckArray;
+use Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -16,11 +17,12 @@ class UpdateTaskResourceNormalizer implements DenormalizerInterface, NormalizerI
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    public function supportsDenormalization($data, $type, $format = null) : bool
+    use ValidatorTrait;
+    public function supportsDenormalization($data, $type, $format = null, array $context = array()) : bool
     {
         return $type === 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\UpdateTaskResource';
     }
-    public function supportsNormalization($data, $format = null) : bool
+    public function supportsNormalization($data, $format = null, array $context = array()) : bool
     {
         return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\UpdateTaskResource';
     }
@@ -41,6 +43,12 @@ class UpdateTaskResourceNormalizer implements DenormalizerInterface, NormalizerI
         }
         if (\array_key_exists('taskStatus', $data)) {
             $object->setTaskStatus($data['taskStatus']);
+            unset($data['taskStatus']);
+        }
+        foreach ($data as $key => $value) {
+            if (preg_match('/.*/', (string) $key)) {
+                $object[$key] = $value;
+            }
         }
         return $object;
     }
@@ -51,6 +59,11 @@ class UpdateTaskResourceNormalizer implements DenormalizerInterface, NormalizerI
     {
         $data = array();
         $data['taskStatus'] = $object->getTaskStatus();
+        foreach ($object as $key => $value) {
+            if (preg_match('/.*/', (string) $key)) {
+                $data[$key] = $value;
+            }
+        }
         return $data;
     }
 }
