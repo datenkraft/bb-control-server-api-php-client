@@ -63,6 +63,19 @@ $factory = new ClientFactory($config);
 $client = Client::createWithFactory($factory);
 ~~~~
 
+### Example Endpoint: Get Task Collection
+~~~~ php
+$queryParams = [
+    'filter[projectId]' => 'projectId',
+    'filter[taskType]' => 'taskType',
+    'filter[notBefore]' => (new DateTime())->format(DateTimeInterface::ATOM),
+    'filter[taskStatus]' => ['taskStatus1', 'taskStatus2'],
+];
+
+$response = $client->getTaskCollection($queryParams);
+$response; // tasks[]
+
+~~~~
 
 ## Licence
 This repository is available under the [MIT license](https://opensource.org/licenses/MIT).
