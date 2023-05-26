@@ -12,7 +12,10 @@ class GetTaskCollection extends \Datenkraft\Backbone\Client\ControlServerApi\Gen
     *     @var string $filter[projectId] Task projectId filter
     *     @var string $filter[taskType] Task taskType filter
     *     @var string $filter[notBefore] Task notBefore filter
-    *     @var array $filter[taskStatus] Task taskStatus filter
+    *     @var string $filter[taskStatus] Status of the task (optional).
+    
+    - open: The task has not been processed yet.
+    - finished: The task has been finished.
     *     @var string $filter[identityId] Task identityId filter
     * }
     */
@@ -46,7 +49,7 @@ class GetTaskCollection extends \Datenkraft\Backbone\Client\ControlServerApi\Gen
         $optionsResolver->addAllowedTypes('filter[projectId]', array('string'));
         $optionsResolver->addAllowedTypes('filter[taskType]', array('string'));
         $optionsResolver->addAllowedTypes('filter[notBefore]', array('string'));
-        $optionsResolver->addAllowedTypes('filter[taskStatus]', array('array'));
+        $optionsResolver->addAllowedTypes('filter[taskStatus]', array('string'));
         $optionsResolver->addAllowedTypes('filter[identityId]', array('string'));
         return $optionsResolver;
     }
