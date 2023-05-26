@@ -44,7 +44,10 @@ class Client extends \Datenkraft\Backbone\Client\ControlServerApi\Generated\Runt
     *     @var string $filter[projectId] Task projectId filter
     *     @var string $filter[taskType] Task taskType filter
     *     @var string $filter[notBefore] Task notBefore filter
-    *     @var array $filter[taskStatus] Task taskStatus filter
+    *     @var string $filter[taskStatus] Status of the task (optional).
+    
+    - open: The task has not been processed yet.
+    - finished: The task has been finished.
     *     @var string $filter[identityId] Task identityId filter
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)

@@ -230,14 +230,19 @@
                     {
                         "name": "filter[taskStatus]",
                         "in": "query",
-                        "description": "Task taskStatus filter",
-                        "style": "form",
-                        "explode": false,
-                        "allowReserved": true,
+                        "description": "Status of the task (optional).\n\n- open: The task has not been processed yet.\n- finished: The task has been finished.",
+                        "required": false,
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
+                            "type": "string"
+                        },
+                        "examples": {
+                            "single status": {
+                                "summary": "single task status",
+                                "value": "open"
+                            },
+                            "multiple status": {
+                                "summary": "multiple task status",
+                                "value": "finished,open"
                             }
                         }
                     },
