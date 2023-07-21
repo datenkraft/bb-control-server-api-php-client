@@ -2,7 +2,7 @@
 
 namespace Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception;
 
-class GetAuthRoleCollectionNotFoundException extends NotFoundException
+class PostAuthRoleBadRequestException extends BadRequestException
 {
     /**
      * @var \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse
@@ -10,7 +10,7 @@ class GetAuthRoleCollectionNotFoundException extends NotFoundException
     private $errorResponse;
     public function __construct(\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse $errorResponse)
     {
-        parent::__construct('Not Found');
+        parent::__construct('Bad Request');
         $this->errorResponse = $errorResponse;
     }
     public function getErrorResponse() : \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse
