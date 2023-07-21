@@ -5,82 +5,144 @@ namespace Datenkraft\Backbone\Client\ControlServerApi\Generated;
 class Client extends \Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\Client\Client
 {
     /**
-     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetTaskTemplateCollectionUnauthorizedException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetTaskTemplateCollectionForbiddenException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetTaskTemplateCollectionInternalServerErrorException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
-     *
-     * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskTemplateResource[]|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
-     */
-    public function getTaskTemplateCollection(string $fetch = self::FETCH_OBJECT)
-    {
-        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\GetTaskTemplateCollection(), $fetch);
-    }
-    /**
-     * Generate a task with a task template id
-     *
-     * @param string $taskTemplateId Task Template Id
-     * @param \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskTemplateTaskResource $requestBody 
-     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostTaskTemplateTaskBadRequestException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostTaskTemplateTaskUnauthorizedException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostTaskTemplateTaskForbiddenException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostTaskTemplateTaskNotFoundException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostTaskTemplateTaskInternalServerErrorException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
-     *
-     * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskResource|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
-     */
-    public function postTaskTemplateTask(string $taskTemplateId, \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskTemplateTaskResource $requestBody, string $fetch = self::FETCH_OBJECT)
-    {
-        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\PostTaskTemplateTask($taskTemplateId, $requestBody), $fetch);
-    }
-    /**
-    * Get tasks. By default, only tasks assigned to the requesting identity are provided.
-    If the requesting identity has the permission bb-control-server-api/task:read-all, all tasks are provided.
+    * Get the audit log.
     *
     * @param array $queryParameters {
-    *     @var string $filter[projectId] Task projectId filter
-    *     @var string $filter[taskType] Task taskType filter
-    *     @var string $filter[notBefore] Task notBefore filter
-    *     @var string $filter[taskStatus] Status of the task (optional).
-    
-    - open: The task has not been processed yet.
-    - finished: The task has been finished.
-    *     @var string $filter[identityId] Task identityId filter
+    *     @var int $page The page to read. Default is the first page.
+    *     @var int $pageSize The maximum size per page is 100. Default is 100.
+    *     @var string $paginationMode The paginationMode to use:
+    - default: The total number of items in the collection will not be calculated.
+    - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+    *     @var string $filter[endpoint] A filter for restricting the audit log to a endpoint.
+    *     @var string $filter[version] A filter for restricting the audit log to a endpoint version.
+    *     @var mixed $filter[identifier] A filter for querying actions for a identifier.
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetTaskCollectionUnauthorizedException
-    * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetTaskCollectionForbiddenException
-    * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetTaskCollectionInternalServerErrorException
+    * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuditLogCollectionBadRequestException
+    * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuditLogCollectionUnauthorizedException
+    * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuditLogCollectionForbiddenException
+    * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuditLogCollectionInternalServerErrorException
     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
     *
-    * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskResource[]|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+    * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\AuditLogCollection|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
     */
-    public function getTaskCollection(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function getAuditLogCollection(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\GetTaskCollection($queryParameters), $fetch);
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\GetAuditLogCollection($queryParameters), $fetch);
     }
     /**
-     * Update one or more fields of a Task
+     * Delete one or more role to permission assignments in this resource server
      *
-     * @param string $taskId Task Id
-     * @param \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\UpdateTaskResource $requestBody 
+     * @param null|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\AuthPermissionRoleResource[] $requestBody 
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskUnauthorizedException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskForbiddenException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskUnprocessableEntityException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskNotFoundException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskBadRequestException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteAuthPermissionRoleCollectionBadRequestException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteAuthPermissionRoleCollectionUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteAuthPermissionRoleCollectionForbiddenException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteAuthPermissionRoleCollectionNotFoundException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteAuthPermissionRoleCollectionInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
      *
-     * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskResource|\Psr\Http\Message\ResponseInterface
+     * @return null|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
      */
-    public function patchTask(string $taskId, \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\UpdateTaskResource $requestBody, string $fetch = self::FETCH_OBJECT)
+    public function deleteAuthPermissionRoleCollection(?array $requestBody = null, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\PatchTask($taskId, $requestBody), $fetch);
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\DeleteAuthPermissionRoleCollection($requestBody), $fetch);
+    }
+    /**
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuthPermissionRoleCollectionUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuthPermissionRoleCollectionForbiddenException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuthPermissionRoleCollectionInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
+     *
+     * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\AuthPermissionRoleResource[]|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     */
+    public function getAuthPermissionRoleCollection(string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\GetAuthPermissionRoleCollection(), $fetch);
+    }
+    /**
+     * Create one or more role to permission assignments in this resource server
+     *
+     * @param \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\AuthPermissionRoleResource[] $requestBody 
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostAuthPermissionRoleCollectionBadRequestException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostAuthPermissionRoleCollectionUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostAuthPermissionRoleCollectionForbiddenException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostAuthPermissionRoleCollectionConflictException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostAuthPermissionRoleCollectionInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
+     *
+     * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\AuthPermissionRoleResource[]|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     */
+    public function postAuthPermissionRoleCollection(array $requestBody, string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\PostAuthPermissionRoleCollection($requestBody), $fetch);
+    }
+    /**
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuthPermissionCollectionUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuthPermissionCollectionForbiddenException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuthPermissionCollectionInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
+     *
+     * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\AuthPermissionResource[]|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     */
+    public function getAuthPermissionCollection(string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\GetAuthPermissionCollection(), $fetch);
+    }
+    /**
+     * Delete one or more role to identity assignments in this resource server
+     *
+     * @param null|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\AuthRoleIdentityResource[] $requestBody 
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteAuthRoleIdentityCollectionBadRequestException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteAuthRoleIdentityCollectionUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteAuthRoleIdentityCollectionForbiddenException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteAuthRoleIdentityCollectionNotFoundException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteAuthRoleIdentityCollectionUnprocessableEntityException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteAuthRoleIdentityCollectionInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
+     *
+     * @return null|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     */
+    public function deleteAuthRoleIdentityCollection(?array $requestBody = null, string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\DeleteAuthRoleIdentityCollection($requestBody), $fetch);
+    }
+    /**
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuthRoleIdentityCollectionUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuthRoleIdentityCollectionForbiddenException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuthRoleIdentityCollectionNotFoundException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuthRoleIdentityCollectionInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
+     *
+     * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\AuthRoleIdentityResource[]|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     */
+    public function getAuthRoleIdentityCollection(string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\GetAuthRoleIdentityCollection(), $fetch);
+    }
+    /**
+     * Create one or more role to identity assignments in this resource server
+     *
+     * @param \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\AuthRoleIdentityResource[] $requestBody 
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostAuthRoleIdentityCollectionBadRequestException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostAuthRoleIdentityCollectionUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostAuthRoleIdentityCollectionForbiddenException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostAuthRoleIdentityCollectionConflictException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostAuthRoleIdentityCollectionUnprocessableEntityException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostAuthRoleIdentityCollectionInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
+     *
+     * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\AuthRoleIdentityResource[]|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     */
+    public function postAuthRoleIdentityCollection(array $requestBody, string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\PostAuthRoleIdentityCollection($requestBody), $fetch);
     }
     /**
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -169,58 +231,6 @@ class Client extends \Datenkraft\Backbone\Client\ControlServerApi\Generated\Runt
         return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\PostAuthRole($roleCode, $requestBody), $fetch);
     }
     /**
-     * Delete one or more role to identity assignments in this resource server
-     *
-     * @param null|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\AuthRoleIdentityResource[] $requestBody 
-     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteAuthRoleIdentityCollectionBadRequestException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteAuthRoleIdentityCollectionUnauthorizedException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteAuthRoleIdentityCollectionForbiddenException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteAuthRoleIdentityCollectionNotFoundException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteAuthRoleIdentityCollectionUnprocessableEntityException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteAuthRoleIdentityCollectionInternalServerErrorException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
-     *
-     * @return null|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
-     */
-    public function deleteAuthRoleIdentityCollection(?array $requestBody = null, string $fetch = self::FETCH_OBJECT)
-    {
-        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\DeleteAuthRoleIdentityCollection($requestBody), $fetch);
-    }
-    /**
-     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuthRoleIdentityCollectionUnauthorizedException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuthRoleIdentityCollectionForbiddenException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuthRoleIdentityCollectionNotFoundException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuthRoleIdentityCollectionInternalServerErrorException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
-     *
-     * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\AuthRoleIdentityResource[]|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
-     */
-    public function getAuthRoleIdentityCollection(string $fetch = self::FETCH_OBJECT)
-    {
-        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\GetAuthRoleIdentityCollection(), $fetch);
-    }
-    /**
-     * Create one or more role to identity assignments in this resource server
-     *
-     * @param \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\AuthRoleIdentityResource[] $requestBody 
-     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostAuthRoleIdentityCollectionBadRequestException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostAuthRoleIdentityCollectionUnauthorizedException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostAuthRoleIdentityCollectionForbiddenException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostAuthRoleIdentityCollectionConflictException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostAuthRoleIdentityCollectionUnprocessableEntityException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostAuthRoleIdentityCollectionInternalServerErrorException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
-     *
-     * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\AuthRoleIdentityResource[]|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
-     */
-    public function postAuthRoleIdentityCollection(array $requestBody, string $fetch = self::FETCH_OBJECT)
-    {
-        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\PostAuthRoleIdentityCollection($requestBody), $fetch);
-    }
-    /**
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
      *
@@ -229,19 +239,6 @@ class Client extends \Datenkraft\Backbone\Client\ControlServerApi\Generated\Runt
     public function getOpenApi(string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\GetOpenApi(), $fetch);
-    }
-    /**
-     * Get the openapi documentation in the specified format
-     *
-     * @param string $format Openapi file format
-     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
-     *
-     * @return null|\Psr\Http\Message\ResponseInterface
-     */
-    public function getOpenApiInFormat(string $format, string $fetch = self::FETCH_OBJECT)
-    {
-        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\GetOpenApiInFormat($format), $fetch);
     }
     /**
      * Get the changelog in the specified format
@@ -259,92 +256,95 @@ class Client extends \Datenkraft\Backbone\Client\ControlServerApi\Generated\Runt
         return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\GetChangelogInFormat($format), $fetch);
     }
     /**
+     * Get the openapi documentation in the specified format
+     *
+     * @param string $format Openapi file format
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuthPermissionCollectionUnauthorizedException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuthPermissionCollectionForbiddenException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuthPermissionCollectionInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
      *
-     * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\AuthPermissionResource[]|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     * @return null|\Psr\Http\Message\ResponseInterface
      */
-    public function getAuthPermissionCollection(string $fetch = self::FETCH_OBJECT)
+    public function getOpenApiInFormat(string $format, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\GetAuthPermissionCollection(), $fetch);
-    }
-    /**
-     * Delete one or more role to permission assignments in this resource server
-     *
-     * @param null|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\AuthPermissionRoleResource[] $requestBody 
-     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteAuthPermissionRoleCollectionBadRequestException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteAuthPermissionRoleCollectionUnauthorizedException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteAuthPermissionRoleCollectionForbiddenException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteAuthPermissionRoleCollectionNotFoundException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteAuthPermissionRoleCollectionInternalServerErrorException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
-     *
-     * @return null|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
-     */
-    public function deleteAuthPermissionRoleCollection(?array $requestBody = null, string $fetch = self::FETCH_OBJECT)
-    {
-        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\DeleteAuthPermissionRoleCollection($requestBody), $fetch);
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\GetOpenApiInFormat($format), $fetch);
     }
     /**
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuthPermissionRoleCollectionUnauthorizedException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuthPermissionRoleCollectionForbiddenException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuthPermissionRoleCollectionInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetTaskTemplateCollectionUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetTaskTemplateCollectionForbiddenException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetTaskTemplateCollectionInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
      *
-     * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\AuthPermissionRoleResource[]|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskTemplateResource[]|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
      */
-    public function getAuthPermissionRoleCollection(string $fetch = self::FETCH_OBJECT)
+    public function getTaskTemplateCollection(string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\GetAuthPermissionRoleCollection(), $fetch);
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\GetTaskTemplateCollection(), $fetch);
     }
     /**
-     * Create one or more role to permission assignments in this resource server
+     * Generate a task with a task template id
      *
-     * @param \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\AuthPermissionRoleResource[] $requestBody 
+     * @param string $taskTemplateId Task Template Id
+     * @param \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskTemplateTaskResource $requestBody 
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostAuthPermissionRoleCollectionBadRequestException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostAuthPermissionRoleCollectionUnauthorizedException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostAuthPermissionRoleCollectionForbiddenException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostAuthPermissionRoleCollectionConflictException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostAuthPermissionRoleCollectionInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostTaskTemplateTaskBadRequestException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostTaskTemplateTaskUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostTaskTemplateTaskForbiddenException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostTaskTemplateTaskNotFoundException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PostTaskTemplateTaskInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
      *
-     * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\AuthPermissionRoleResource[]|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskResource|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
      */
-    public function postAuthPermissionRoleCollection(array $requestBody, string $fetch = self::FETCH_OBJECT)
+    public function postTaskTemplateTask(string $taskTemplateId, \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskTemplateTaskResource $requestBody, string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\PostAuthPermissionRoleCollection($requestBody), $fetch);
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\PostTaskTemplateTask($taskTemplateId, $requestBody), $fetch);
     }
     /**
-    * Get the audit log.
+    * Get tasks. By default, only tasks assigned to the requesting identity are provided.
+    If the requesting identity has the permission bb-control-server-api/task:read-all, all tasks are provided.
     *
     * @param array $queryParameters {
-    *     @var int $page The page to read. Default is the first page.
-    *     @var int $pageSize The maximum size per page is 100. Default is 100.
-    *     @var string $paginationMode The paginationMode to use:
-    - default: The total number of items in the collection will not be calculated.
-    - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-    *     @var string $filter[endpoint] A filter for restricting the audit log to a endpoint.
-    *     @var string $filter[version] A filter for restricting the audit log to a endpoint version.
-    *     @var mixed $filter[identifier] A filter for querying actions for a identifier.
+    *     @var string $filter[projectId] Task projectId filter
+    *     @var string $filter[taskType] Task taskType filter
+    *     @var string $filter[notBefore] Task notBefore filter
+    *     @var string $filter[taskStatus] Status of the task (optional).
+    
+       - open: The task has not been processed yet.
+       - finished: The task has been finished.
+    *     @var string $filter[identityId] Task identityId filter
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-    * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuditLogCollectionBadRequestException
-    * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuditLogCollectionUnauthorizedException
-    * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuditLogCollectionForbiddenException
-    * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetAuditLogCollectionInternalServerErrorException
+    * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetTaskCollectionUnauthorizedException
+    * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetTaskCollectionForbiddenException
+    * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetTaskCollectionInternalServerErrorException
     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
     *
-    * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\AuditLogCollection|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+    * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskResource[]|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
     */
-    public function getAuditLogCollection(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function getTaskCollection(array $queryParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\GetAuditLogCollection($queryParameters), $fetch);
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\GetTaskCollection($queryParameters), $fetch);
+    }
+    /**
+     * Update one or more fields of a Task
+     *
+     * @param string $taskId Task Id
+     * @param \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\UpdateTaskResource $requestBody 
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskForbiddenException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskUnprocessableEntityException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskNotFoundException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskBadRequestException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
+     *
+     * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskResource|\Psr\Http\Message\ResponseInterface
+     */
+    public function patchTask(string $taskId, \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\UpdateTaskResource $requestBody, string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\PatchTask($taskId, $requestBody), $fetch);
     }
     public static function create($httpClient = null, array $additionalPlugins = array(), array $additionalNormalizers = array())
     {
