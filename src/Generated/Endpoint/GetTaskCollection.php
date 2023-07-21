@@ -14,8 +14,8 @@ class GetTaskCollection extends \Datenkraft\Backbone\Client\ControlServerApi\Gen
     *     @var string $filter[notBefore] Task notBefore filter
     *     @var string $filter[taskStatus] Status of the task (optional).
     
-    - open: The task has not been processed yet.
-    - finished: The task has been finished.
+       - open: The task has not been processed yet.
+       - finished: The task has been finished.
     *     @var string $filter[identityId] Task identityId filter
     * }
     */
