@@ -9,6 +9,11 @@ class GetTaskCollection extends \Datenkraft\Backbone\Client\ControlServerApi\Gen
     If the requesting identity has the permission bb-control-server-api/task:read-all, all tasks are provided.
     *
     * @param array $queryParameters {
+    *     @var int $page The page to read. Default is the first page.
+    *     @var int $pageSize The maximum size per page is 100. Default is 100.
+    *     @var string $paginationMode The paginationMode to use:
+    - default: The total number of items in the collection will not be calculated.
+    - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
     *     @var string $filter[projectId] Task projectId filter
     *     @var string $filter[taskType] Task taskType filter
     *     @var string $filter[notBefore] Task notBefore filter
@@ -43,9 +48,12 @@ class GetTaskCollection extends \Datenkraft\Backbone\Client\ControlServerApi\Gen
     protected function getQueryOptionsResolver() : \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(array('filter[projectId]', 'filter[taskType]', 'filter[notBefore]', 'filter[taskStatus]', 'filter[identityId]'));
+        $optionsResolver->setDefined(array('page', 'pageSize', 'paginationMode', 'filter[projectId]', 'filter[taskType]', 'filter[notBefore]', 'filter[taskStatus]', 'filter[identityId]'));
         $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array());
+        $optionsResolver->setDefaults(array('paginationMode' => 'default'));
+        $optionsResolver->addAllowedTypes('page', array('int'));
+        $optionsResolver->addAllowedTypes('pageSize', array('int'));
+        $optionsResolver->addAllowedTypes('paginationMode', array('string'));
         $optionsResolver->addAllowedTypes('filter[projectId]', array('string'));
         $optionsResolver->addAllowedTypes('filter[taskType]', array('string'));
         $optionsResolver->addAllowedTypes('filter[notBefore]', array('string'));
@@ -61,14 +69,14 @@ class GetTaskCollection extends \Datenkraft\Backbone\Client\ControlServerApi\Gen
      * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetTaskCollectionInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
      *
-     * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskResource[]|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse
+     * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskResourceCollection|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse
      */
     protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (is_null($contentType) === false && (200 === $status && mb_strpos($contentType, 'application/json') !== false)) {
-            return $serializer->deserialize($body, 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\TaskResource[]', 'json');
+            return $serializer->deserialize($body, 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\TaskResourceCollection', 'json');
         }
         if (is_null($contentType) === false && (401 === $status && mb_strpos($contentType, 'application/json') !== false)) {
             throw new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetTaskCollectionUnauthorizedException($serializer->deserialize($body, 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\ErrorResponse', 'json'), $response);
