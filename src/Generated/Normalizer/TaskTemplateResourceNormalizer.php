@@ -68,24 +68,13 @@ class TaskTemplateResourceNormalizer implements DenormalizerInterface, Normalize
             $object->setParamsTemplate($values);
             unset($data['paramsTemplate']);
         }
-        if (\array_key_exists('params', $data) && $data['params'] !== null) {
-            $values_1 = new \ArrayObject(array(), \ArrayObject::ARRAY_AS_PROPS);
-            foreach ($data['params'] as $key_1 => $value_1) {
-                $values_1[$key_1] = $value_1;
-            }
-            $object->setParams($values_1);
-            unset($data['params']);
-        }
-        elseif (\array_key_exists('params', $data) && $data['params'] === null) {
-            $object->setParams(null);
-        }
         if (\array_key_exists('lastStartDate', $data)) {
             $object->setLastStartDate(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['lastStartDate']));
             unset($data['lastStartDate']);
         }
-        foreach ($data as $key_2 => $value_2) {
-            if (preg_match('/.*/', (string) $key_2)) {
-                $object[$key_2] = $value_2;
+        foreach ($data as $key_1 => $value_1) {
+            if (preg_match('/.*/', (string) $key_1)) {
+                $object[$key_1] = $value_1;
             }
         }
         return $object;
@@ -107,17 +96,10 @@ class TaskTemplateResourceNormalizer implements DenormalizerInterface, Normalize
             $values[$key] = $value;
         }
         $data['paramsTemplate'] = $values;
-        if ($object->isInitialized('params') && null !== $object->getParams()) {
-            $values_1 = array();
-            foreach ($object->getParams() as $key_1 => $value_1) {
-                $values_1[$key_1] = $value_1;
-            }
-            $data['params'] = $values_1;
-        }
         $data['lastStartDate'] = $object->getLastStartDate()->format('Y-m-d\\TH:i:sP');
-        foreach ($object as $key_2 => $value_2) {
-            if (preg_match('/.*/', (string) $key_2)) {
-                $data[$key_2] = $value_2;
+        foreach ($object as $key_1 => $value_1) {
+            if (preg_match('/.*/', (string) $key_1)) {
+                $data[$key_1] = $value_1;
             }
         }
         return $data;
