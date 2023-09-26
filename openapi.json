@@ -2409,11 +2409,6 @@
                         "description": "Params Template",
                         "type": "object"
                     },
-                    "params": {
-                        "description": "Params",
-                        "type": "object",
-                        "nullable": true
-                    },
                     "lastStartDate": {
                         "description": "Last Start Date",
                         "type": "string",

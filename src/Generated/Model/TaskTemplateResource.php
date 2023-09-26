@@ -43,12 +43,6 @@ class TaskTemplateResource extends \ArrayObject
      */
     protected $paramsTemplate;
     /**
-     * Params
-     *
-     * @var mixed[]|null
-     */
-    protected $params;
-    /**
      * Last Start Date
      *
      * @var \DateTime
@@ -162,28 +156,6 @@ class TaskTemplateResource extends \ArrayObject
     {
         $this->initialized['paramsTemplate'] = true;
         $this->paramsTemplate = $paramsTemplate;
-        return $this;
-    }
-    /**
-     * Params
-     *
-     * @return mixed[]|null
-     */
-    public function getParams() : ?iterable
-    {
-        return $this->params;
-    }
-    /**
-     * Params
-     *
-     * @param mixed[]|null $params
-     *
-     * @return self
-     */
-    public function setParams(?iterable $params) : self
-    {
-        $this->initialized['params'] = true;
-        $this->params = $params;
         return $this;
     }
     /**
