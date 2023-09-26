@@ -2327,10 +2327,13 @@
                         "description": "Params Template",
                         "type": "object"
                     },
-                    "params": {
-                        "description": "Params",
-                        "type": "object",
-                        "nullable": true
+                    "schedule": {
+                        "description": "Schedule",
+                        "type": "string"
+                    },
+                    "active": {
+                        "description": "Active",
+                        "type": "boolean"
                     },
                     "lastStartDate": {
                         "description": "Last Start Date",
