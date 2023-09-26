@@ -43,11 +43,17 @@ class TaskTemplateResource extends \ArrayObject
      */
     protected $paramsTemplate;
     /**
-     * Params
+     * Schedule
      *
-     * @var mixed[]|null
+     * @var string
      */
-    protected $params;
+    protected $schedule;
+    /**
+     * Active
+     *
+     * @var bool
+     */
+    protected $active;
     /**
      * Last Start Date
      *
@@ -165,25 +171,47 @@ class TaskTemplateResource extends \ArrayObject
         return $this;
     }
     /**
-     * Params
+     * Schedule
      *
-     * @return mixed[]|null
+     * @return string
      */
-    public function getParams() : ?iterable
+    public function getSchedule() : string
     {
-        return $this->params;
+        return $this->schedule;
     }
     /**
-     * Params
+     * Schedule
      *
-     * @param mixed[]|null $params
+     * @param string $schedule
      *
      * @return self
      */
-    public function setParams(?iterable $params) : self
+    public function setSchedule(string $schedule) : self
     {
-        $this->initialized['params'] = true;
-        $this->params = $params;
+        $this->initialized['schedule'] = true;
+        $this->schedule = $schedule;
+        return $this;
+    }
+    /**
+     * Active
+     *
+     * @return bool
+     */
+    public function getActive() : bool
+    {
+        return $this->active;
+    }
+    /**
+     * Active
+     *
+     * @param bool $active
+     *
+     * @return self
+     */
+    public function setActive(bool $active) : self
+    {
+        $this->initialized['active'] = true;
+        $this->active = $active;
         return $this;
     }
     /**
