@@ -13,14 +13,14 @@ class GetTaskCollection extends \Datenkraft\Backbone\Client\ControlServerApi\Gen
     *     @var int $pageSize The maximum size per page is 100. Default is 100.
     *     @var string $paginationMode The paginationMode to use:
     - default: The total number of items in the collection will not be calculated.
-    - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+    - totalCount: The total number of items in the collection will be calculated.
+    This can mean loss of performance.
     *     @var string $filter[projectId] Task projectId filter
     *     @var string $filter[taskType] Task taskType filter
     *     @var string $filter[notBefore] Task notBefore filter
     *     @var string $filter[taskStatus] Status of the task (optional).
-    
-       - open: The task has not been processed yet.
-       - finished: The task has been finished.
+    - open: The task has not been processed yet.
+    - finished: The task has been finished.
     *     @var string $filter[identityId] Task identityId filter
     * }
     */
