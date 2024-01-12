@@ -316,7 +316,8 @@ class Client extends \Datenkraft\Backbone\Client\ControlServerApi\Generated\Runt
     *     @var int $pageSize The maximum size per page is 100. Default is 100.
     *     @var string $paginationMode The paginationMode to use:
     - default: The total number of items in the collection will not be calculated.
-    - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+    - totalCount: The total number of items in the collection will be calculated.
+    This can mean loss of performance.
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetTaskTemplateCollectionUnauthorizedException
@@ -358,14 +359,14 @@ class Client extends \Datenkraft\Backbone\Client\ControlServerApi\Generated\Runt
     *     @var int $pageSize The maximum size per page is 100. Default is 100.
     *     @var string $paginationMode The paginationMode to use:
     - default: The total number of items in the collection will not be calculated.
-    - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+    - totalCount: The total number of items in the collection will be calculated.
+    This can mean loss of performance.
     *     @var string $filter[projectId] Task projectId filter
     *     @var string $filter[taskType] Task taskType filter
     *     @var string $filter[notBefore] Task notBefore filter
     *     @var string $filter[taskStatus] Status of the task (optional).
-    
-       - open: The task has not been processed yet.
-       - finished: The task has been finished.
+    - open: The task has not been processed yet.
+    - finished: The task has been finished.
     *     @var string $filter[identityId] Task identityId filter
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -386,15 +387,15 @@ class Client extends \Datenkraft\Backbone\Client\ControlServerApi\Generated\Runt
      * @param string $taskId Task Id
      * @param \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\UpdateTaskResource $requestBody 
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskBadRequestException
      * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskUnauthorizedException
      * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskForbiddenException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskUnprocessableEntityException
      * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskNotFoundException
-     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskBadRequestException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskUnprocessableEntityException
      * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\PatchTaskInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
      *
-     * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskResource|\Psr\Http\Message\ResponseInterface
+     * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskResource|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
      */
     public function patchTask(string $taskId, \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\UpdateTaskResource $requestBody, string $fetch = self::FETCH_OBJECT)
     {
