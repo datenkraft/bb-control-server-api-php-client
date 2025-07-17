@@ -332,6 +332,62 @@ class Client extends \Datenkraft\Backbone\Client\ControlServerApi\Generated\Runt
         return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\GetTaskTemplateCollection($queryParameters), $fetch);
     }
     /**
+     * Create a new task template
+     *
+     * @param \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\PostTaskTemplateResource $requestBody 
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\CreateTaskTemplateBadRequestException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\CreateTaskTemplateUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\CreateTaskTemplateForbiddenException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\CreateTaskTemplateUnprocessableEntityException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\CreateTaskTemplateInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
+     *
+     * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskTemplateResource|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     */
+    public function createTaskTemplate(\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\PostTaskTemplateResource $requestBody, string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\CreateTaskTemplate($requestBody), $fetch);
+    }
+    /**
+     * Delete a specific task template by ID
+     *
+     * @param string $taskTemplateId The ID of the task template to delete
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteTaskTemplateBadRequestException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteTaskTemplateUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteTaskTemplateForbiddenException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteTaskTemplateNotFoundException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteTaskTemplateInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
+     *
+     * @return null|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     */
+    public function deleteTaskTemplate(string $taskTemplateId, string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\DeleteTaskTemplate($taskTemplateId), $fetch);
+    }
+    /**
+     * Update a specific task template by ID
+     *
+     * @param string $taskTemplateId The ID of the task template to update
+     * @param \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\PatchTaskTemplateResource $requestBody 
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UpdateTaskTemplateBadRequestException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UpdateTaskTemplateUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UpdateTaskTemplateForbiddenException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UpdateTaskTemplateNotFoundException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UpdateTaskTemplateUnprocessableEntityException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UpdateTaskTemplateInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
+     *
+     * @return \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskTemplateResource|\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     */
+    public function updateTaskTemplate(string $taskTemplateId, \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\PatchTaskTemplateResource $requestBody, string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Endpoint\UpdateTaskTemplate($taskTemplateId, $requestBody), $fetch);
+    }
+    /**
      * Generate a task with a task template id
      *
      * @param string $taskTemplateId Task Template Id

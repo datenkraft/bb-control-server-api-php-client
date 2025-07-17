@@ -2,7 +2,7 @@
 
 namespace Datenkraft\Backbone\Client\ControlServerApi\Generated\Model;
 
-class TaskTemplateResource extends \ArrayObject
+class PatchTaskTemplateResource extends \ArrayObject
 {
     /**
      * @var array
@@ -12,24 +12,6 @@ class TaskTemplateResource extends \ArrayObject
     {
         return array_key_exists($property, $this->initialized);
     }
-    /**
-     * Task Template Id
-     *
-     * @var string
-     */
-    protected $taskTemplateId;
-    /**
-     * Last Start Date
-     *
-     * @var \DateTime
-     */
-    protected $lastStartDate;
-    /**
-     * Identity Id
-     *
-     * @var string
-     */
-    protected $identityId;
     /**
      * Project Id
      *
@@ -60,72 +42,6 @@ class TaskTemplateResource extends \ArrayObject
      * @var bool
      */
     protected $active;
-    /**
-     * Task Template Id
-     *
-     * @return string
-     */
-    public function getTaskTemplateId() : string
-    {
-        return $this->taskTemplateId;
-    }
-    /**
-     * Task Template Id
-     *
-     * @param string $taskTemplateId
-     *
-     * @return self
-     */
-    public function setTaskTemplateId(string $taskTemplateId) : self
-    {
-        $this->initialized['taskTemplateId'] = true;
-        $this->taskTemplateId = $taskTemplateId;
-        return $this;
-    }
-    /**
-     * Last Start Date
-     *
-     * @return \DateTime
-     */
-    public function getLastStartDate() : \DateTime
-    {
-        return $this->lastStartDate;
-    }
-    /**
-     * Last Start Date
-     *
-     * @param \DateTime $lastStartDate
-     *
-     * @return self
-     */
-    public function setLastStartDate(\DateTime $lastStartDate) : self
-    {
-        $this->initialized['lastStartDate'] = true;
-        $this->lastStartDate = $lastStartDate;
-        return $this;
-    }
-    /**
-     * Identity Id
-     *
-     * @return string
-     */
-    public function getIdentityId() : string
-    {
-        return $this->identityId;
-    }
-    /**
-     * Identity Id
-     *
-     * @param string $identityId
-     *
-     * @return self
-     */
-    public function setIdentityId(string $identityId) : self
-    {
-        $this->initialized['identityId'] = true;
-        $this->identityId = $identityId;
-        return $this;
-    }
     /**
      * Project Id
      *
