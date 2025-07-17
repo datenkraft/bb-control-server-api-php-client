@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-class TaskTemplateResourceNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class PostTaskTemplateResourceNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
@@ -20,11 +20,11 @@ class TaskTemplateResourceNormalizer implements DenormalizerInterface, Normalize
     use ValidatorTrait;
     public function supportsDenormalization($data, $type, $format = null, array $context = array()) : bool
     {
-        return $type === 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\TaskTemplateResource';
+        return $type === 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\PostTaskTemplateResource';
     }
     public function supportsNormalization($data, $format = null, array $context = array()) : bool
     {
-        return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\TaskTemplateResource';
+        return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\PostTaskTemplateResource';
     }
     /**
      * @return mixed
@@ -37,21 +37,9 @@ class TaskTemplateResourceNormalizer implements DenormalizerInterface, Normalize
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskTemplateResource();
+        $object = new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\PostTaskTemplateResource();
         if (null === $data || false === \is_array($data)) {
             return $object;
-        }
-        if (\array_key_exists('taskTemplateId', $data)) {
-            $object->setTaskTemplateId($data['taskTemplateId']);
-            unset($data['taskTemplateId']);
-        }
-        if (\array_key_exists('lastStartDate', $data)) {
-            $object->setLastStartDate(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['lastStartDate']));
-            unset($data['lastStartDate']);
-        }
-        if (\array_key_exists('identityId', $data)) {
-            $object->setIdentityId($data['identityId']);
-            unset($data['identityId']);
         }
         if (\array_key_exists('projectId', $data) && $data['projectId'] !== null) {
             $object->setProjectId($data['projectId']);
@@ -93,15 +81,6 @@ class TaskTemplateResourceNormalizer implements DenormalizerInterface, Normalize
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if ($object->isInitialized('taskTemplateId') && null !== $object->getTaskTemplateId()) {
-            $data['taskTemplateId'] = $object->getTaskTemplateId();
-        }
-        if ($object->isInitialized('lastStartDate') && null !== $object->getLastStartDate()) {
-            $data['lastStartDate'] = $object->getLastStartDate()->format('Y-m-d\\TH:i:sP');
-        }
-        if ($object->isInitialized('identityId') && null !== $object->getIdentityId()) {
-            $data['identityId'] = $object->getIdentityId();
-        }
         if ($object->isInitialized('projectId') && null !== $object->getProjectId()) {
             $data['projectId'] = $object->getProjectId();
         }

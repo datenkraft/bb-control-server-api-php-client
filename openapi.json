@@ -1584,6 +1584,317 @@
                         "bearerAuth": []
                     }
                 ]
+            },
+            "post": {
+                "tags": [
+                    "task-template"
+                ],
+                "summary": "Create task template",
+                "description": "Create a new task template",
+                "operationId": "createTaskTemplate",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/postTaskTemplateResource"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/taskTemplateResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity\n\nError codes:\n- DATA_NOT_PROCESSABLE: The given data is not processable.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/task-template/{taskTemplateId}": {
+            "delete": {
+                "tags": [
+                    "task-template"
+                ],
+                "summary": "Delete a task template",
+                "description": "Delete a specific task template by ID",
+                "operationId": "deleteTaskTemplate",
+                "parameters": [
+                    {
+                        "name": "taskTemplateId",
+                        "in": "path",
+                        "description": "The ID of the task template to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "task-template"
+                ],
+                "summary": "Update task template",
+                "description": "Update a specific task template by ID",
+                "operationId": "updateTaskTemplate",
+                "parameters": [
+                    {
+                        "name": "taskTemplateId",
+                        "in": "path",
+                        "description": "The ID of the task template to update",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/patchTaskTemplateResource"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/taskTemplateResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity\n\nError codes:\n- DATA_NOT_PROCESSABLE: The given data is not processable.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/task-template/{taskTemplateId}/task": {
@@ -2183,6 +2494,32 @@
                 },
                 "type": "object"
             },
+            "baseTaskTemplateResource": {
+                "properties": {
+                    "projectId": {
+                        "description": "Project Id",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "taskType": {
+                        "description": "Task Type",
+                        "type": "string"
+                    },
+                    "paramsTemplate": {
+                        "description": "Params Template",
+                        "type": "object"
+                    },
+                    "schedule": {
+                        "description": "Schedule",
+                        "type": "string"
+                    },
+                    "active": {
+                        "description": "Active",
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
             "collection": {
                 "title": "collection",
                 "properties": {
@@ -2322,6 +2659,27 @@
                 },
                 "type": "object"
             },
+            "patchTaskTemplateResource": {
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/baseTaskTemplateResource"
+                    }
+                ]
+            },
+            "postTaskTemplateResource": {
+                "required": [
+                    "taskType",
+                    "paramsTemplate",
+                    "schedule"
+                ],
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/baseTaskTemplateResource"
+                    }
+                ]
+            },
             "taskResource": {
                 "required": [
                     "taskId",
@@ -2384,44 +2742,30 @@
                 ]
             },
             "taskTemplateResource": {
-                "required": [
-                    "taskTemplateId",
-                    "identityId",
-                    "taskType",
-                    "paramsTemplate",
-                    "schedule",
-                    "active",
-                    "lastStartDate"
-                ],
-                "properties": {
-                    "taskTemplateId": {
-                        "description": "Task Template Id",
-                        "type": "string"
-                    },
-                    "identityId": {
-                        "description": "Identity Id",
-                        "type": "string"
-                    },
-                    "projectId": {
-                        "description": "Project Id",
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "taskType": {
-                        "description": "Task Type",
-                        "type": "string"
-                    },
-                    "paramsTemplate": {
-                        "description": "Params Template",
+                "type": "object",
+                "allOf": [
+                    {
+                        "properties": {
+                            "taskTemplateId": {
+                                "description": "Task Template Id",
+                                "type": "string"
+                            },
+                            "lastStartDate": {
+                                "description": "Last Start Date",
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "identityId": {
+                                "description": "Identity Id",
+                                "type": "string"
+                            }
+                        },
                         "type": "object"
                     },
-                    "lastStartDate": {
-                        "description": "Last Start Date",
-                        "type": "string",
-                        "format": "date-time"
+                    {
+                        "$ref": "#/components/schemas/baseTaskTemplateResource"
                     }
-                },
-                "type": "object"
+                ]
             },
             "taskTemplateResourceCollection": {
                 "allOf": [

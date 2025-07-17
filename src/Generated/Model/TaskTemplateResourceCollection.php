@@ -21,7 +21,7 @@ class TaskTemplateResourceCollection extends \ArrayObject
     /**
      * Class TaskTemplateResourceCollection
      *
-     * @var TaskTemplateResource[]
+     * @var mixed[][]
      */
     protected $data;
     /**
@@ -49,7 +49,7 @@ class TaskTemplateResourceCollection extends \ArrayObject
     /**
      * Class TaskTemplateResourceCollection
      *
-     * @return TaskTemplateResource[]
+     * @return mixed[][]
      */
     public function getData() : array
     {
@@ -58,7 +58,7 @@ class TaskTemplateResourceCollection extends \ArrayObject
     /**
      * Class TaskTemplateResourceCollection
      *
-     * @param TaskTemplateResource[] $data
+     * @param mixed[][] $data
      *
      * @return self
      */
