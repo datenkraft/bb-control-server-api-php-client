@@ -31,10 +31,18 @@ class BaseTaskTemplateResource extends \ArrayObject
      */
     protected $paramsTemplate;
     /**
-     * Schedule
-     *
-     * @var string
-     */
+    * Task template schedule interval specification:
+    - The format starts with the letter P, for "period".
+    - Each duration period is represented by an integer value followed by a period designator (Y = years, M =
+    months, D = days, W = weeks, H = hours, M = minutes, S = seconds).
+    - If the duration contains time elements, that portion of the specification is preceded by the letter T.
+    - The unit types must be entered from the largest scale unit on the left to the smallest scale unit on the
+    right. So years before months, months before days, days before minutes, etc.
+    - The specification can also be represented as a date time.
+    - Formats are based on ISO 8601 duration format.
+    *
+    * @var string
+    */
     protected $schedule;
     /**
      * Active
@@ -109,21 +117,37 @@ class BaseTaskTemplateResource extends \ArrayObject
         return $this;
     }
     /**
-     * Schedule
-     *
-     * @return string
-     */
+    * Task template schedule interval specification:
+    - The format starts with the letter P, for "period".
+    - Each duration period is represented by an integer value followed by a period designator (Y = years, M =
+    months, D = days, W = weeks, H = hours, M = minutes, S = seconds).
+    - If the duration contains time elements, that portion of the specification is preceded by the letter T.
+    - The unit types must be entered from the largest scale unit on the left to the smallest scale unit on the
+    right. So years before months, months before days, days before minutes, etc.
+    - The specification can also be represented as a date time.
+    - Formats are based on ISO 8601 duration format.
+    *
+    * @return string
+    */
     public function getSchedule() : string
     {
         return $this->schedule;
     }
     /**
-     * Schedule
-     *
-     * @param string $schedule
-     *
-     * @return self
-     */
+    * Task template schedule interval specification:
+    - The format starts with the letter P, for "period".
+    - Each duration period is represented by an integer value followed by a period designator (Y = years, M =
+    months, D = days, W = weeks, H = hours, M = minutes, S = seconds).
+    - If the duration contains time elements, that portion of the specification is preceded by the letter T.
+    - The unit types must be entered from the largest scale unit on the left to the smallest scale unit on the
+    right. So years before months, months before days, days before minutes, etc.
+    - The specification can also be represented as a date time.
+    - Formats are based on ISO 8601 duration format.
+    *
+    * @param string $schedule
+    *
+    * @return self
+    */
     public function setSchedule(string $schedule) : self
     {
         $this->initialized['schedule'] = true;

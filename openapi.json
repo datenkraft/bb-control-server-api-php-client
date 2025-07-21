@@ -1747,6 +1747,16 @@
                             }
                         }
                     },
+                    "422": {
+                        "description": "Unprocessable Entity\n\nError codes:\n- DATA_NOT_PROCESSABLE: The given data is not processable.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
@@ -2503,15 +2513,23 @@
                     },
                     "taskType": {
                         "description": "Task Type",
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                            "bigqueryCollectSkuUsage",
+                            "calloneCollectSkuUsage",
+                            "discoCollectSkuUsage",
+                            "fulfillmentCollectSkuUsage",
+                            "monitoringLoadTestSkuUsageToDebtLineItem"
+                        ]
                     },
                     "paramsTemplate": {
                         "description": "Params Template",
                         "type": "object"
                     },
                     "schedule": {
-                        "description": "Schedule",
-                        "type": "string"
+                        "description": "Task template schedule interval specification:\n- The format starts with the letter P, for \"period\".\n- Each duration period is represented by an integer value followed by a period designator (Y = years, M =\nmonths, D = days, W = weeks, H = hours, M = minutes, S = seconds).\n- If the duration contains time elements, that portion of the specification is preceded by the letter T.\n- The unit types must be entered from the largest scale unit on the left to the smallest scale unit on the\nright. So years before months, months before days, days before minutes, etc.\n- The specification can also be represented as a date time.\n- Formats are based on ISO 8601 duration format.",
+                        "type": "string",
+                        "example": "P2D"
                     },
                     "active": {
                         "description": "Active",
