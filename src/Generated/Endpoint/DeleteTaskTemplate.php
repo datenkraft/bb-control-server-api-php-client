@@ -38,6 +38,7 @@ class DeleteTaskTemplate extends \Datenkraft\Backbone\Client\ControlServerApi\Ge
      * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteTaskTemplateUnauthorizedException
      * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteTaskTemplateForbiddenException
      * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteTaskTemplateNotFoundException
+     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteTaskTemplateUnprocessableEntityException
      * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteTaskTemplateInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\UnexpectedStatusCodeException
      *
@@ -61,6 +62,9 @@ class DeleteTaskTemplate extends \Datenkraft\Backbone\Client\ControlServerApi\Ge
         }
         if (is_null($contentType) === false && (404 === $status && mb_strpos($contentType, 'application/json') !== false)) {
             throw new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteTaskTemplateNotFoundException($serializer->deserialize($body, 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\ErrorResponse', 'json'), $response);
+        }
+        if (is_null($contentType) === false && (422 === $status && mb_strpos($contentType, 'application/json') !== false)) {
+            throw new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteTaskTemplateUnprocessableEntityException($serializer->deserialize($body, 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\ErrorResponse', 'json'), $response);
         }
         if (is_null($contentType) === false && (500 === $status && mb_strpos($contentType, 'application/json') !== false)) {
             throw new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\DeleteTaskTemplateInternalServerErrorException($serializer->deserialize($body, 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\ErrorResponse', 'json'), $response);
