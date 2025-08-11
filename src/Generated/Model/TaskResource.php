@@ -7,8 +7,8 @@ class TaskResource extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
-    public function isInitialized($property) : bool
+    protected $initialized = [];
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
@@ -45,7 +45,7 @@ class TaskResource extends \ArrayObject
     /**
      * Params
      *
-     * @var mixed[]|null
+     * @var array<string, mixed>|null
      */
     protected $params;
     /**
@@ -59,7 +59,7 @@ class TaskResource extends \ArrayObject
      *
      * @return string
      */
-    public function getTaskId() : string
+    public function getTaskId(): string
     {
         return $this->taskId;
     }
@@ -70,7 +70,7 @@ class TaskResource extends \ArrayObject
      *
      * @return self
      */
-    public function setTaskId(string $taskId) : self
+    public function setTaskId(string $taskId): self
     {
         $this->initialized['taskId'] = true;
         $this->taskId = $taskId;
@@ -81,7 +81,7 @@ class TaskResource extends \ArrayObject
      *
      * @return string
      */
-    public function getIdentityId() : string
+    public function getIdentityId(): string
     {
         return $this->identityId;
     }
@@ -92,7 +92,7 @@ class TaskResource extends \ArrayObject
      *
      * @return self
      */
-    public function setIdentityId(string $identityId) : self
+    public function setIdentityId(string $identityId): self
     {
         $this->initialized['identityId'] = true;
         $this->identityId = $identityId;
@@ -103,7 +103,7 @@ class TaskResource extends \ArrayObject
      *
      * @return string|null
      */
-    public function getProjectId() : ?string
+    public function getProjectId(): ?string
     {
         return $this->projectId;
     }
@@ -114,7 +114,7 @@ class TaskResource extends \ArrayObject
      *
      * @return self
      */
-    public function setProjectId(?string $projectId) : self
+    public function setProjectId(?string $projectId): self
     {
         $this->initialized['projectId'] = true;
         $this->projectId = $projectId;
@@ -125,7 +125,7 @@ class TaskResource extends \ArrayObject
      *
      * @return string
      */
-    public function getTaskType() : string
+    public function getTaskType(): string
     {
         return $this->taskType;
     }
@@ -136,7 +136,7 @@ class TaskResource extends \ArrayObject
      *
      * @return self
      */
-    public function setTaskType(string $taskType) : self
+    public function setTaskType(string $taskType): self
     {
         $this->initialized['taskType'] = true;
         $this->taskType = $taskType;
@@ -147,7 +147,7 @@ class TaskResource extends \ArrayObject
      *
      * @return string
      */
-    public function getTaskStatus() : string
+    public function getTaskStatus(): string
     {
         return $this->taskStatus;
     }
@@ -158,7 +158,7 @@ class TaskResource extends \ArrayObject
      *
      * @return self
      */
-    public function setTaskStatus(string $taskStatus) : self
+    public function setTaskStatus(string $taskStatus): self
     {
         $this->initialized['taskStatus'] = true;
         $this->taskStatus = $taskStatus;
@@ -167,20 +167,20 @@ class TaskResource extends \ArrayObject
     /**
      * Params
      *
-     * @return mixed[]|null
+     * @return array<string, mixed>|null
      */
-    public function getParams() : ?iterable
+    public function getParams(): ?iterable
     {
         return $this->params;
     }
     /**
      * Params
      *
-     * @param mixed[]|null $params
+     * @param array<string, mixed>|null $params
      *
      * @return self
      */
-    public function setParams(?iterable $params) : self
+    public function setParams(?iterable $params): self
     {
         $this->initialized['params'] = true;
         $this->params = $params;
@@ -191,7 +191,7 @@ class TaskResource extends \ArrayObject
      *
      * @return \DateTime
      */
-    public function getNotBefore() : \DateTime
+    public function getNotBefore(): \DateTime
     {
         return $this->notBefore;
     }
@@ -202,7 +202,7 @@ class TaskResource extends \ArrayObject
      *
      * @return self
      */
-    public function setNotBefore(\DateTime $notBefore) : self
+    public function setNotBefore(\DateTime $notBefore): self
     {
         $this->initialized['notBefore'] = true;
         $this->notBefore = $notBefore;

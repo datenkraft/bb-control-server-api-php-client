@@ -5,7 +5,6 @@ namespace Datenkraft\Backbone\Client\ControlServerApi\Generated\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\Normalizer\CheckArray;
 use Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\Normalizer\ValidatorTrait;
-use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -18,18 +17,15 @@ class PatchTaskTemplateResourceNormalizer implements DenormalizerInterface, Norm
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null, array $context = array()) : bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return $type === 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\PatchTaskTemplateResource';
+        return $type === \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\PatchTaskTemplateResource::class;
     }
-    public function supportsNormalization($data, $format = null, array $context = array()) : bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\PatchTaskTemplateResource';
+        return is_object($data) && get_class($data) === \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\PatchTaskTemplateResource::class;
     }
-    /**
-     * @return mixed
-     */
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -38,6 +34,9 @@ class PatchTaskTemplateResourceNormalizer implements DenormalizerInterface, Norm
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         $object = new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\PatchTaskTemplateResource();
+        if (\array_key_exists('active', $data) && \is_int($data['active'])) {
+            $data['active'] = (bool) $data['active'];
+        }
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -53,7 +52,7 @@ class PatchTaskTemplateResourceNormalizer implements DenormalizerInterface, Norm
             unset($data['taskType']);
         }
         if (\array_key_exists('paramsTemplate', $data)) {
-            $values = new \ArrayObject(array(), \ArrayObject::ARRAY_AS_PROPS);
+            $values = new \ArrayObject([], \ArrayObject::ARRAY_AS_PROPS);
             foreach ($data['paramsTemplate'] as $key => $value) {
                 $values[$key] = $value;
             }
@@ -75,36 +74,37 @@ class PatchTaskTemplateResourceNormalizer implements DenormalizerInterface, Norm
         }
         return $object;
     }
-    /**
-     * @return array|string|int|float|bool|\ArrayObject|null
-     */
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
-        $data = array();
-        if ($object->isInitialized('projectId') && null !== $object->getProjectId()) {
-            $data['projectId'] = $object->getProjectId();
+        $dataArray = [];
+        if ($data->isInitialized('projectId') && null !== $data->getProjectId()) {
+            $dataArray['projectId'] = $data->getProjectId();
         }
-        if ($object->isInitialized('taskType') && null !== $object->getTaskType()) {
-            $data['taskType'] = $object->getTaskType();
+        if ($data->isInitialized('taskType') && null !== $data->getTaskType()) {
+            $dataArray['taskType'] = $data->getTaskType();
         }
-        if ($object->isInitialized('paramsTemplate') && null !== $object->getParamsTemplate()) {
-            $values = array();
-            foreach ($object->getParamsTemplate() as $key => $value) {
+        if ($data->isInitialized('paramsTemplate') && null !== $data->getParamsTemplate()) {
+            $values = [];
+            foreach ($data->getParamsTemplate() as $key => $value) {
                 $values[$key] = $value;
             }
-            $data['paramsTemplate'] = $values;
+            $dataArray['paramsTemplate'] = $values;
         }
-        if ($object->isInitialized('schedule') && null !== $object->getSchedule()) {
-            $data['schedule'] = $object->getSchedule();
+        if ($data->isInitialized('schedule') && null !== $data->getSchedule()) {
+            $dataArray['schedule'] = $data->getSchedule();
         }
-        if ($object->isInitialized('active') && null !== $object->getActive()) {
-            $data['active'] = $object->getActive();
+        if ($data->isInitialized('active') && null !== $data->getActive()) {
+            $dataArray['active'] = $data->getActive();
         }
-        foreach ($object as $key_1 => $value_1) {
+        foreach ($data as $key_1 => $value_1) {
             if (preg_match('/.*/', (string) $key_1)) {
-                $data[$key_1] = $value_1;
+                $dataArray[$key_1] = $value_1;
             }
         }
-        return $data;
+        return $dataArray;
+    }
+    public function getSupportedTypes(?string $format = null): array
+    {
+        return [\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\PatchTaskTemplateResource::class => false];
     }
 }

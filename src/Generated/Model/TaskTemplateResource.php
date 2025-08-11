@@ -7,8 +7,8 @@ class TaskTemplateResource extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
-    public function isInitialized($property) : bool
+    protected $initialized = [];
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
@@ -45,7 +45,7 @@ class TaskTemplateResource extends \ArrayObject
     /**
      * Params Template
      *
-     * @var mixed[]
+     * @var array<string, mixed>
      */
     protected $paramsTemplate;
     /**
@@ -73,7 +73,7 @@ class TaskTemplateResource extends \ArrayObject
      *
      * @return string
      */
-    public function getTaskTemplateId() : string
+    public function getTaskTemplateId(): string
     {
         return $this->taskTemplateId;
     }
@@ -84,7 +84,7 @@ class TaskTemplateResource extends \ArrayObject
      *
      * @return self
      */
-    public function setTaskTemplateId(string $taskTemplateId) : self
+    public function setTaskTemplateId(string $taskTemplateId): self
     {
         $this->initialized['taskTemplateId'] = true;
         $this->taskTemplateId = $taskTemplateId;
@@ -95,7 +95,7 @@ class TaskTemplateResource extends \ArrayObject
      *
      * @return \DateTime
      */
-    public function getLastStartDate() : \DateTime
+    public function getLastStartDate(): \DateTime
     {
         return $this->lastStartDate;
     }
@@ -106,7 +106,7 @@ class TaskTemplateResource extends \ArrayObject
      *
      * @return self
      */
-    public function setLastStartDate(\DateTime $lastStartDate) : self
+    public function setLastStartDate(\DateTime $lastStartDate): self
     {
         $this->initialized['lastStartDate'] = true;
         $this->lastStartDate = $lastStartDate;
@@ -117,7 +117,7 @@ class TaskTemplateResource extends \ArrayObject
      *
      * @return string
      */
-    public function getIdentityId() : string
+    public function getIdentityId(): string
     {
         return $this->identityId;
     }
@@ -128,7 +128,7 @@ class TaskTemplateResource extends \ArrayObject
      *
      * @return self
      */
-    public function setIdentityId(string $identityId) : self
+    public function setIdentityId(string $identityId): self
     {
         $this->initialized['identityId'] = true;
         $this->identityId = $identityId;
@@ -139,7 +139,7 @@ class TaskTemplateResource extends \ArrayObject
      *
      * @return string|null
      */
-    public function getProjectId() : ?string
+    public function getProjectId(): ?string
     {
         return $this->projectId;
     }
@@ -150,7 +150,7 @@ class TaskTemplateResource extends \ArrayObject
      *
      * @return self
      */
-    public function setProjectId(?string $projectId) : self
+    public function setProjectId(?string $projectId): self
     {
         $this->initialized['projectId'] = true;
         $this->projectId = $projectId;
@@ -161,7 +161,7 @@ class TaskTemplateResource extends \ArrayObject
      *
      * @return string
      */
-    public function getTaskType() : string
+    public function getTaskType(): string
     {
         return $this->taskType;
     }
@@ -172,7 +172,7 @@ class TaskTemplateResource extends \ArrayObject
      *
      * @return self
      */
-    public function setTaskType(string $taskType) : self
+    public function setTaskType(string $taskType): self
     {
         $this->initialized['taskType'] = true;
         $this->taskType = $taskType;
@@ -181,20 +181,20 @@ class TaskTemplateResource extends \ArrayObject
     /**
      * Params Template
      *
-     * @return mixed[]
+     * @return array<string, mixed>
      */
-    public function getParamsTemplate() : iterable
+    public function getParamsTemplate(): iterable
     {
         return $this->paramsTemplate;
     }
     /**
      * Params Template
      *
-     * @param mixed[] $paramsTemplate
+     * @param array<string, mixed> $paramsTemplate
      *
      * @return self
      */
-    public function setParamsTemplate(iterable $paramsTemplate) : self
+    public function setParamsTemplate(iterable $paramsTemplate): self
     {
         $this->initialized['paramsTemplate'] = true;
         $this->paramsTemplate = $paramsTemplate;
@@ -213,7 +213,7 @@ class TaskTemplateResource extends \ArrayObject
     *
     * @return string
     */
-    public function getSchedule() : string
+    public function getSchedule(): string
     {
         return $this->schedule;
     }
@@ -232,7 +232,7 @@ class TaskTemplateResource extends \ArrayObject
     *
     * @return self
     */
-    public function setSchedule(string $schedule) : self
+    public function setSchedule(string $schedule): self
     {
         $this->initialized['schedule'] = true;
         $this->schedule = $schedule;
@@ -243,7 +243,7 @@ class TaskTemplateResource extends \ArrayObject
      *
      * @return bool
      */
-    public function getActive() : bool
+    public function getActive(): bool
     {
         return $this->active;
     }
@@ -254,7 +254,7 @@ class TaskTemplateResource extends \ArrayObject
      *
      * @return self
      */
-    public function setActive(bool $active) : self
+    public function setActive(bool $active): self
     {
         $this->initialized['active'] = true;
         $this->active = $active;

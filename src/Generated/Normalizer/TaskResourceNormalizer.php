@@ -5,7 +5,6 @@ namespace Datenkraft\Backbone\Client\ControlServerApi\Generated\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\Normalizer\CheckArray;
 use Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\Normalizer\ValidatorTrait;
-use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -18,18 +17,15 @@ class TaskResourceNormalizer implements DenormalizerInterface, NormalizerInterfa
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null, array $context = array()) : bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return $type === 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\TaskResource';
+        return $type === \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskResource::class;
     }
-    public function supportsNormalization($data, $format = null, array $context = array()) : bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\ControlServerApi\\Generated\\Model\\TaskResource';
+        return is_object($data) && get_class($data) === \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskResource::class;
     }
-    /**
-     * @return mixed
-     */
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -65,7 +61,7 @@ class TaskResourceNormalizer implements DenormalizerInterface, NormalizerInterfa
             unset($data['taskStatus']);
         }
         if (\array_key_exists('params', $data) && $data['params'] !== null) {
-            $values = new \ArrayObject(array(), \ArrayObject::ARRAY_AS_PROPS);
+            $values = new \ArrayObject([], \ArrayObject::ARRAY_AS_PROPS);
             foreach ($data['params'] as $key => $value) {
                 $values[$key] = $value;
             }
@@ -76,7 +72,7 @@ class TaskResourceNormalizer implements DenormalizerInterface, NormalizerInterfa
             $object->setParams(null);
         }
         if (\array_key_exists('notBefore', $data)) {
-            $object->setNotBefore(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['notBefore']));
+            $object->setNotBefore(\DateTime::createFromFormat('Y-m-d\TH:i:sP', $data['notBefore']));
             unset($data['notBefore']);
         }
         foreach ($data as $key_1 => $value_1) {
@@ -86,34 +82,35 @@ class TaskResourceNormalizer implements DenormalizerInterface, NormalizerInterfa
         }
         return $object;
     }
-    /**
-     * @return array|string|int|float|bool|\ArrayObject|null
-     */
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
-        $data = array();
-        $data['taskId'] = $object->getTaskId();
-        $data['identityId'] = $object->getIdentityId();
-        if ($object->isInitialized('projectId') && null !== $object->getProjectId()) {
-            $data['projectId'] = $object->getProjectId();
+        $dataArray = [];
+        $dataArray['taskId'] = $data->getTaskId();
+        $dataArray['identityId'] = $data->getIdentityId();
+        if ($data->isInitialized('projectId') && null !== $data->getProjectId()) {
+            $dataArray['projectId'] = $data->getProjectId();
         }
-        $data['taskType'] = $object->getTaskType();
-        $data['taskStatus'] = $object->getTaskStatus();
-        if ($object->isInitialized('params') && null !== $object->getParams()) {
-            $values = array();
-            foreach ($object->getParams() as $key => $value) {
+        $dataArray['taskType'] = $data->getTaskType();
+        $dataArray['taskStatus'] = $data->getTaskStatus();
+        if ($data->isInitialized('params') && null !== $data->getParams()) {
+            $values = [];
+            foreach ($data->getParams() as $key => $value) {
                 $values[$key] = $value;
             }
-            $data['params'] = $values;
+            $dataArray['params'] = $values;
         }
-        if ($object->isInitialized('notBefore') && null !== $object->getNotBefore()) {
-            $data['notBefore'] = $object->getNotBefore()->format('Y-m-d\\TH:i:sP');
+        if ($data->isInitialized('notBefore') && null !== $data->getNotBefore()) {
+            $dataArray['notBefore'] = $data->getNotBefore()?->format('Y-m-d\TH:i:sP');
         }
-        foreach ($object as $key_1 => $value_1) {
+        foreach ($data as $key_1 => $value_1) {
             if (preg_match('/.*/', (string) $key_1)) {
-                $data[$key_1] = $value_1;
+                $dataArray[$key_1] = $value_1;
             }
         }
-        return $data;
+        return $dataArray;
+    }
+    public function getSupportedTypes(?string $format = null): array
+    {
+        return [\Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskResource::class => false];
     }
 }

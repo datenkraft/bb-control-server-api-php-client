@@ -7,8 +7,8 @@ class TaskTemplateTaskResource extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
-    public function isInitialized($property) : bool
+    protected $initialized = [];
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
@@ -23,7 +23,7 @@ class TaskTemplateTaskResource extends \ArrayObject
      *
      * @return \DateTime
      */
-    public function getStartDate() : \DateTime
+    public function getStartDate(): \DateTime
     {
         return $this->startDate;
     }
@@ -34,7 +34,7 @@ class TaskTemplateTaskResource extends \ArrayObject
      *
      * @return self
      */
-    public function setStartDate(\DateTime $startDate) : self
+    public function setStartDate(\DateTime $startDate): self
     {
         $this->initialized['startDate'] = true;
         $this->startDate = $startDate;
