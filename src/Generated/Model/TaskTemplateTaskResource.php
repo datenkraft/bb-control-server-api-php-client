@@ -15,11 +15,15 @@ class TaskTemplateTaskResource extends \ArrayObject
     /**
      * Start Date
      *
+     * @deprecated
+     *
      * @var \DateTime
      */
     protected $startDate;
     /**
      * Start Date
+     *
+     * @deprecated
      *
      * @return \DateTime
      */
@@ -31,6 +35,8 @@ class TaskTemplateTaskResource extends \ArrayObject
      * Start Date
      *
      * @param \DateTime $startDate
+     *
+     * @deprecated
      *
      * @return self
      */
