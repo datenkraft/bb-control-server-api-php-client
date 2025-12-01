@@ -2812,8 +2812,7 @@
                     "startDate": {
                         "description": "Start Date",
                         "type": "string",
-                        "format": "date-time",
-                        "deprecated": true
+                        "format": "date-time"
                     }
                 },
                 "type": "object"
