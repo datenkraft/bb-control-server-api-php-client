@@ -318,6 +318,8 @@ class Client extends \Datenkraft\Backbone\Client\ControlServerApi\Generated\Runt
     - default: The total number of items in the collection will not be calculated.
     - totalCount: The total number of items in the collection will be calculated.
     This can mean loss of performance.
+    *     @var string $filter[projectId] Filter task templates by project id.
+    *     @var string $filter[taskType] Filter task templates by task type code.
     * }
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
     * @throws \Datenkraft\Backbone\Client\ControlServerApi\Generated\Exception\GetTaskTemplateCollectionUnauthorizedException

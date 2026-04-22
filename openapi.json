@@ -1522,6 +1522,26 @@
                                 "totalCount"
                             ]
                         }
+                    },
+                    {
+                        "name": "filter[projectId]",
+                        "in": "query",
+                        "description": "Filter task templates by project id.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "filter[taskType]",
+                        "in": "query",
+                        "description": "Filter task templates by task type code.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 255
+                        }
                     }
                 ],
                 "responses": {
@@ -2519,7 +2539,8 @@
                             "calloneCollectSkuUsage",
                             "discoCollectSkuUsage",
                             "fulfillmentCollectSkuUsage",
-                            "monitoringLoadTestSkuUsageToDebtLineItem"
+                            "monitoringLoadTestSkuUsageToDebtLineItem",
+                            "freshdeskCollectSkuUsage"
                         ]
                     },
                     "paramsTemplate": {
