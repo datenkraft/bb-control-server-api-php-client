@@ -14,6 +14,8 @@ class GetTaskTemplateCollection extends \Datenkraft\Backbone\Client\ControlServe
     - default: The total number of items in the collection will not be calculated.
     - totalCount: The total number of items in the collection will be calculated.
     This can mean loss of performance.
+    *     @var string $filter[projectId] Filter task templates by project id.
+    *     @var string $filter[taskType] Filter task templates by task type code.
     * }
     */
     public function __construct(array $queryParameters = [])
@@ -40,12 +42,14 @@ class GetTaskTemplateCollection extends \Datenkraft\Backbone\Client\ControlServe
     protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(['page', 'pageSize', 'paginationMode']);
+        $optionsResolver->setDefined(['page', 'pageSize', 'paginationMode', 'filter[projectId]', 'filter[taskType]']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults(['paginationMode' => 'default']);
         $optionsResolver->addAllowedTypes('page', ['int']);
         $optionsResolver->addAllowedTypes('pageSize', ['int']);
         $optionsResolver->addAllowedTypes('paginationMode', ['string']);
+        $optionsResolver->addAllowedTypes('filter[projectId]', ['string']);
+        $optionsResolver->addAllowedTypes('filter[taskType]', ['string']);
         return $optionsResolver;
     }
     /**
