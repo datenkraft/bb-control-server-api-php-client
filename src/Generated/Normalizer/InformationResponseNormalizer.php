@@ -27,22 +27,22 @@ class InformationResponseNormalizer implements DenormalizerInterface, Normalizer
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\InformationResponse();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\InformationResponse();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('information', $data)) {
             $values = [];
             foreach ($data['information'] as $value) {
                 $values[] = $this->denormalizer->denormalize($value, \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\Information::class, 'json', $context);
             }
-            $object->setInformation($values);
+            $object->information = $values;
             unset($data['information']);
         }
         foreach ($data as $key => $value_1) {
@@ -55,14 +55,15 @@ class InformationResponseNormalizer implements DenormalizerInterface, Normalizer
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('information') && null !== $data->getInformation()) {
+        if (array_key_exists('information', get_object_vars($data)) && null !== ($data->information ?? null)) {
             $values = [];
-            foreach ($data->getInformation() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+            foreach ($data->information as $value) {
+                $normalized = $value === null ? null : $this->normalizer->normalize($value, 'json', $context);
+                $values[] = \is_iterable($normalized) ? new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\JsonObject($normalized) : $normalized;
             }
             $dataArray['information'] = $values;
         }
-        foreach ($data as $key => $value_1) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_1;
             }

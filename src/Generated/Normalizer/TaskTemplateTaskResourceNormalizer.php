@@ -27,18 +27,30 @@ class TaskTemplateTaskResourceNormalizer implements DenormalizerInterface, Norma
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskTemplateTaskResource();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskTemplateTaskResource();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
-        }
         if (\array_key_exists('startDate', $data)) {
-            $object->setStartDate(\DateTime::createFromFormat('Y-m-d\TH:i:sP', $data['startDate']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:sP', $data['startDate']);
+            if (false === $date) {
+                if (is_string($data['startDate']) and 1 === preg_match('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/', $data['startDate'])) {
+                    try {
+                        $date = new \DateTime($data['startDate']);
+                    } catch (\Exception) {
+                        throw new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\Normalizer\InvalidDateException($data['startDate'], 'Y-m-d\TH:i:sP');
+                    }
+                } else {
+                    throw new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\Normalizer\InvalidDateException($data['startDate'], 'Y-m-d\TH:i:sP');
+                }
+            }
+            $object->startDate = $date;
             unset($data['startDate']);
         }
         foreach ($data as $key => $value) {
@@ -51,8 +63,8 @@ class TaskTemplateTaskResourceNormalizer implements DenormalizerInterface, Norma
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        $dataArray['startDate'] = $data->getStartDate()?->format('Y-m-d\TH:i:sP');
-        foreach ($data as $key => $value) {
+        $dataArray['startDate'] = $data->startDate->format('Y-m-d\TH:i:sP');
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

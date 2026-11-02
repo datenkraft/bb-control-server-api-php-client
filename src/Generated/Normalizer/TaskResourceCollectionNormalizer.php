@@ -27,18 +27,18 @@ class TaskResourceCollectionNormalizer implements DenormalizerInterface, Normali
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskResourceCollection();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskResourceCollection();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
-        }
         if (\array_key_exists('pagination', $data)) {
-            $object->setPagination($this->denormalizer->denormalize($data['pagination'], \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\CollectionPagination::class, 'json', $context));
+            $object->pagination = $this->denormalizer->denormalize($data['pagination'], \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\CollectionPagination::class, 'json', $context);
             unset($data['pagination']);
         }
         if (\array_key_exists('data', $data)) {
@@ -46,7 +46,7 @@ class TaskResourceCollectionNormalizer implements DenormalizerInterface, Normali
             foreach ($data['data'] as $value) {
                 $values[] = $this->denormalizer->denormalize($value, \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\TaskResource::class, 'json', $context);
             }
-            $object->setData($values);
+            $object->data = $values;
             unset($data['data']);
         }
         foreach ($data as $key => $value_1) {
@@ -59,17 +59,19 @@ class TaskResourceCollectionNormalizer implements DenormalizerInterface, Normali
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('pagination') && null !== $data->getPagination()) {
-            $dataArray['pagination'] = $this->normalizer->normalize($data->getPagination(), 'json', $context);
+        if (array_key_exists('pagination', get_object_vars($data)) && null !== ($data->pagination ?? null)) {
+            $normalized = $this->normalizer->normalize($data->pagination, 'json', $context);
+            $dataArray['pagination'] = \is_iterable($normalized) ? new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\JsonObject($normalized) : $normalized;
         }
-        if ($data->isInitialized('data') && null !== $data->getData()) {
+        if (array_key_exists('data', get_object_vars($data)) && null !== ($data->data ?? null)) {
             $values = [];
-            foreach ($data->getData() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+            foreach ($data->data as $value) {
+                $normalized_1 = $value === null ? null : $this->normalizer->normalize($value, 'json', $context);
+                $values[] = \is_iterable($normalized_1) ? new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\JsonObject($normalized_1) : $normalized_1;
             }
             $dataArray['data'] = $values;
         }
-        foreach ($data as $key => $value_1) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_1;
             }
