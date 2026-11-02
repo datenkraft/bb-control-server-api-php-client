@@ -2,178 +2,51 @@
 
 namespace Datenkraft\Backbone\Client\ControlServerApi\Generated\Model;
 
-class PatchTaskTemplateResource extends \ArrayObject
+use Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\AdditionalAndPatternProperties;
+use Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\AdditionalPropertiesInterface;
+class PatchTaskTemplateResource implements AdditionalPropertiesInterface
 {
-    /**
-     * @var array
-     */
-    protected $initialized = [];
-    public function isInitialized($property): bool
-    {
-        return array_key_exists($property, $this->initialized);
-    }
+    use AdditionalAndPatternProperties;
     /**
      * Project Id
      *
      * @var string|null
      */
-    protected $projectId;
+    public ?string $projectId;
     /**
      * Task Type
      *
      * @var string
      */
-    protected $taskType;
+    public string $taskType;
     /**
      * Params Template
      *
-     * @var array<string, mixed>
+     * @var iterable<string, mixed>
      */
-    protected $paramsTemplate;
+    public iterable $paramsTemplate;
     /**
-    * Task template schedule interval specification:
-    - The format starts with the letter P, for "period".
-    - Each duration period is represented by an integer value followed by a period designator (Y = years, M =
-    months, D = days, W = weeks, H = hours, M = minutes, S = seconds).
-    - If the duration contains time elements, that portion of the specification is preceded by the letter T.
-    - The unit types must be entered from the largest scale unit on the left to the smallest scale unit on the
-    right. So years before months, months before days, days before minutes, etc.
-    - The specification can also be represented as a date time.
-    - Formats are based on ISO 8601 duration format.
-    *
-    * @var string
-    */
-    protected $schedule;
+     * Task template schedule interval specification:
+     * - The format starts with the letter P, for "period".
+     * - Each duration period is represented by an integer value followed by a period designator (Y = years, M =
+     * months, D = days, W = weeks, H = hours, M = minutes, S = seconds).
+     * - If the duration contains time elements, that portion of the specification is preceded by the letter T.
+     * - The unit types must be entered from the largest scale unit on the left to the smallest scale unit on the
+     * right. So years before months, months before days, days before minutes, etc.
+     * - The specification can also be represented as a date time.
+     * - Formats are based on ISO 8601 duration format.
+     *
+     * @var string
+     */
+    public string $schedule;
     /**
      * Active
      *
      * @var bool
      */
-    protected $active;
-    /**
-     * Project Id
-     *
-     * @return string|null
-     */
-    public function getProjectId(): ?string
+    public bool $active;
+    public function definedProperties(): array
     {
-        return $this->projectId;
-    }
-    /**
-     * Project Id
-     *
-     * @param string|null $projectId
-     *
-     * @return self
-     */
-    public function setProjectId(?string $projectId): self
-    {
-        $this->initialized['projectId'] = true;
-        $this->projectId = $projectId;
-        return $this;
-    }
-    /**
-     * Task Type
-     *
-     * @return string
-     */
-    public function getTaskType(): string
-    {
-        return $this->taskType;
-    }
-    /**
-     * Task Type
-     *
-     * @param string $taskType
-     *
-     * @return self
-     */
-    public function setTaskType(string $taskType): self
-    {
-        $this->initialized['taskType'] = true;
-        $this->taskType = $taskType;
-        return $this;
-    }
-    /**
-     * Params Template
-     *
-     * @return array<string, mixed>
-     */
-    public function getParamsTemplate(): iterable
-    {
-        return $this->paramsTemplate;
-    }
-    /**
-     * Params Template
-     *
-     * @param array<string, mixed> $paramsTemplate
-     *
-     * @return self
-     */
-    public function setParamsTemplate(iterable $paramsTemplate): self
-    {
-        $this->initialized['paramsTemplate'] = true;
-        $this->paramsTemplate = $paramsTemplate;
-        return $this;
-    }
-    /**
-    * Task template schedule interval specification:
-    - The format starts with the letter P, for "period".
-    - Each duration period is represented by an integer value followed by a period designator (Y = years, M =
-    months, D = days, W = weeks, H = hours, M = minutes, S = seconds).
-    - If the duration contains time elements, that portion of the specification is preceded by the letter T.
-    - The unit types must be entered from the largest scale unit on the left to the smallest scale unit on the
-    right. So years before months, months before days, days before minutes, etc.
-    - The specification can also be represented as a date time.
-    - Formats are based on ISO 8601 duration format.
-    *
-    * @return string
-    */
-    public function getSchedule(): string
-    {
-        return $this->schedule;
-    }
-    /**
-    * Task template schedule interval specification:
-    - The format starts with the letter P, for "period".
-    - Each duration period is represented by an integer value followed by a period designator (Y = years, M =
-    months, D = days, W = weeks, H = hours, M = minutes, S = seconds).
-    - If the duration contains time elements, that portion of the specification is preceded by the letter T.
-    - The unit types must be entered from the largest scale unit on the left to the smallest scale unit on the
-    right. So years before months, months before days, days before minutes, etc.
-    - The specification can also be represented as a date time.
-    - Formats are based on ISO 8601 duration format.
-    *
-    * @param string $schedule
-    *
-    * @return self
-    */
-    public function setSchedule(string $schedule): self
-    {
-        $this->initialized['schedule'] = true;
-        $this->schedule = $schedule;
-        return $this;
-    }
-    /**
-     * Active
-     *
-     * @return bool
-     */
-    public function getActive(): bool
-    {
-        return $this->active;
-    }
-    /**
-     * Active
-     *
-     * @param bool $active
-     *
-     * @return self
-     */
-    public function setActive(bool $active): self
-    {
-        $this->initialized['active'] = true;
-        $this->active = $active;
-        return $this;
+        return ['projectId' => 'projectId', 'taskType' => 'taskType', 'paramsTemplate' => 'paramsTemplate', 'schedule' => 'schedule', 'active' => 'active'];
     }
 }

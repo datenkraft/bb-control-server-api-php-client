@@ -27,44 +27,45 @@ class PostTaskTemplateResourceNormalizer implements DenormalizerInterface, Norma
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\PostTaskTemplateResource();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Model\PostTaskTemplateResource();
         if (\array_key_exists('active', $data) && \is_int($data['active'])) {
             $data['active'] = (bool) $data['active'];
         }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
-        }
         if (\array_key_exists('projectId', $data) && $data['projectId'] !== null) {
-            $object->setProjectId($data['projectId']);
+            $object->projectId = $data['projectId'];
             unset($data['projectId']);
         }
-        elseif (\array_key_exists('projectId', $data) && $data['projectId'] === null) {
-            $object->setProjectId(null);
+        elseif (\array_key_exists('projectId', $data)) {
+            $object->projectId = null;
+            unset($data['projectId']);
         }
         if (\array_key_exists('taskType', $data)) {
-            $object->setTaskType($data['taskType']);
+            $object->taskType = $data['taskType'];
             unset($data['taskType']);
         }
         if (\array_key_exists('paramsTemplate', $data)) {
-            $values = new \ArrayObject([], \ArrayObject::ARRAY_AS_PROPS);
+            $values = new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\JsonObject();
             foreach ($data['paramsTemplate'] as $key => $value) {
                 $values[$key] = $value;
             }
-            $object->setParamsTemplate($values);
+            $object->paramsTemplate = $values;
             unset($data['paramsTemplate']);
         }
         if (\array_key_exists('schedule', $data)) {
-            $object->setSchedule($data['schedule']);
+            $object->schedule = $data['schedule'];
             unset($data['schedule']);
         }
         if (\array_key_exists('active', $data)) {
-            $object->setActive($data['active']);
+            $object->active = $data['active'];
             unset($data['active']);
         }
         foreach ($data as $key_1 => $value_1) {
@@ -77,26 +78,26 @@ class PostTaskTemplateResourceNormalizer implements DenormalizerInterface, Norma
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('projectId') && null !== $data->getProjectId()) {
-            $dataArray['projectId'] = $data->getProjectId();
+        if (array_key_exists('projectId', get_object_vars($data)) && null !== ($data->projectId ?? null)) {
+            $dataArray['projectId'] = $data->projectId;
         }
-        if ($data->isInitialized('taskType') && null !== $data->getTaskType()) {
-            $dataArray['taskType'] = $data->getTaskType();
+        if (array_key_exists('taskType', get_object_vars($data)) && null !== ($data->taskType ?? null)) {
+            $dataArray['taskType'] = $data->taskType;
         }
-        if ($data->isInitialized('paramsTemplate') && null !== $data->getParamsTemplate()) {
-            $values = [];
-            foreach ($data->getParamsTemplate() as $key => $value) {
+        if (array_key_exists('paramsTemplate', get_object_vars($data)) && null !== ($data->paramsTemplate ?? null)) {
+            $values = new \Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\JsonObject();
+            foreach ($data->paramsTemplate as $key => $value) {
                 $values[$key] = $value;
             }
             $dataArray['paramsTemplate'] = $values;
         }
-        if ($data->isInitialized('schedule') && null !== $data->getSchedule()) {
-            $dataArray['schedule'] = $data->getSchedule();
+        if (array_key_exists('schedule', get_object_vars($data)) && null !== ($data->schedule ?? null)) {
+            $dataArray['schedule'] = $data->schedule;
         }
-        if ($data->isInitialized('active') && null !== $data->getActive()) {
-            $dataArray['active'] = $data->getActive();
+        if (array_key_exists('active', get_object_vars($data)) && null !== ($data->active ?? null)) {
+            $dataArray['active'] = $data->active;
         }
-        foreach ($data as $key_1 => $value_1) {
+        foreach ($data->additionalPropertyEntries() as $key_1 => $value_1) {
             if (preg_match('/.*/', (string) $key_1)) {
                 $dataArray[$key_1] = $value_1;
             }

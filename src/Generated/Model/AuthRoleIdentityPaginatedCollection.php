@@ -2,70 +2,21 @@
 
 namespace Datenkraft\Backbone\Client\ControlServerApi\Generated\Model;
 
-class AuthRoleIdentityPaginatedCollection extends \ArrayObject
+use Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\AdditionalAndPatternProperties;
+use Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\AdditionalPropertiesInterface;
+class AuthRoleIdentityPaginatedCollection implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
-     * @var array
-     */
-    protected $initialized = [];
-    public function isInitialized($property): bool
-    {
-        return array_key_exists($property, $this->initialized);
-    }
-    /**
-     * 
-     *
      * @var CollectionPagination
      */
-    protected $pagination;
+    public CollectionPagination $pagination;
     /**
-     * 
-     *
      * @var list<AuthRoleIdentityResource>
      */
-    protected $data;
-    /**
-     * 
-     *
-     * @return CollectionPagination
-     */
-    public function getPagination(): CollectionPagination
+    public array $data;
+    public function definedProperties(): array
     {
-        return $this->pagination;
-    }
-    /**
-     * 
-     *
-     * @param CollectionPagination $pagination
-     *
-     * @return self
-     */
-    public function setPagination(CollectionPagination $pagination): self
-    {
-        $this->initialized['pagination'] = true;
-        $this->pagination = $pagination;
-        return $this;
-    }
-    /**
-     * 
-     *
-     * @return list<AuthRoleIdentityResource>
-     */
-    public function getData(): array
-    {
-        return $this->data;
-    }
-    /**
-     * 
-     *
-     * @param list<AuthRoleIdentityResource> $data
-     *
-     * @return self
-     */
-    public function setData(array $data): self
-    {
-        $this->initialized['data'] = true;
-        $this->data = $data;
-        return $this;
+        return ['pagination' => 'pagination', 'data' => 'data'];
     }
 }

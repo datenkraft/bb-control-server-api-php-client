@@ -2,70 +2,23 @@
 
 namespace Datenkraft\Backbone\Client\ControlServerApi\Generated\Model;
 
-class TaskResourceCollection extends \ArrayObject
+use Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\AdditionalAndPatternProperties;
+use Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\AdditionalPropertiesInterface;
+class TaskResourceCollection implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
-     * @var array
-     */
-    protected $initialized = [];
-    public function isInitialized($property): bool
-    {
-        return array_key_exists($property, $this->initialized);
-    }
-    /**
-     * 
-     *
      * @var CollectionPagination
      */
-    protected $pagination;
+    public CollectionPagination $pagination;
     /**
      * Class TaskResourceCollection
      *
      * @var list<TaskResource>
      */
-    protected $data;
-    /**
-     * 
-     *
-     * @return CollectionPagination
-     */
-    public function getPagination(): CollectionPagination
+    public array $data;
+    public function definedProperties(): array
     {
-        return $this->pagination;
-    }
-    /**
-     * 
-     *
-     * @param CollectionPagination $pagination
-     *
-     * @return self
-     */
-    public function setPagination(CollectionPagination $pagination): self
-    {
-        $this->initialized['pagination'] = true;
-        $this->pagination = $pagination;
-        return $this;
-    }
-    /**
-     * Class TaskResourceCollection
-     *
-     * @return list<TaskResource>
-     */
-    public function getData(): array
-    {
-        return $this->data;
-    }
-    /**
-     * Class TaskResourceCollection
-     *
-     * @param list<TaskResource> $data
-     *
-     * @return self
-     */
-    public function setData(array $data): self
-    {
-        $this->initialized['data'] = true;
-        $this->data = $data;
-        return $this;
+        return ['pagination' => 'pagination', 'data' => 'data'];
     }
 }

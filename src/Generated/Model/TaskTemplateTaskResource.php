@@ -2,42 +2,19 @@
 
 namespace Datenkraft\Backbone\Client\ControlServerApi\Generated\Model;
 
-class TaskTemplateTaskResource extends \ArrayObject
+use Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\AdditionalAndPatternProperties;
+use Datenkraft\Backbone\Client\ControlServerApi\Generated\Runtime\AdditionalPropertiesInterface;
+class TaskTemplateTaskResource implements AdditionalPropertiesInterface
 {
-    /**
-     * @var array
-     */
-    protected $initialized = [];
-    public function isInitialized($property): bool
-    {
-        return array_key_exists($property, $this->initialized);
-    }
+    use AdditionalAndPatternProperties;
     /**
      * Start Date
      *
      * @var \DateTime
      */
-    protected $startDate;
-    /**
-     * Start Date
-     *
-     * @return \DateTime
-     */
-    public function getStartDate(): \DateTime
+    public \DateTime $startDate;
+    public function definedProperties(): array
     {
-        return $this->startDate;
-    }
-    /**
-     * Start Date
-     *
-     * @param \DateTime $startDate
-     *
-     * @return self
-     */
-    public function setStartDate(\DateTime $startDate): self
-    {
-        $this->initialized['startDate'] = true;
-        $this->startDate = $startDate;
-        return $this;
+        return ['startDate' => 'startDate'];
     }
 }
